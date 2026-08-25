@@ -1,300 +1,323 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-  
-
-<style>
-/* Mobile responsive - GHOLINO Orders */
-* {
-    box-sizing: border-box;
-}
-
-body {
-    overflow-x: hidden;
-}
-
-.orders-section {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 30px 16px;
-}
-
-.orders-section h2 {
-    text-align: center;
-    font-size: clamp(28px, 8vw, 52px);
-    margin-bottom: 30px;
-}
-
-.order-form {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-.order-form input {
-    width: 100%;
-    min-width: 0;
-    padding: 14px 16px;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-}
-
-.order-form button {
-    width: 100%;
-    padding: 14px;
-    border-radius: 12px;
-    border: none;
-    font-size: 16px;
-}
-
-#ordersList {
-    width: 100%;
-    margin-top: 25px;
-}
-
-.order-card {
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 18px;
-    border-radius: 16px;
-    background: #10291a;
-    border: 1px solid #28683b;
-    direction: rtl;
-    text-align: right;
-}
-
-@media (max-width: 600px) {
-    .orders-section {
-        padding: 20px 12px;
-    }
-
-    .order-form {
-        grid-template-columns: 1fr;
-    }
-
-    .orders-section h2 {
-        font-size: 34px;
-        line-height: 1.4;
-    }
-
-    .order-form input,
-    .order-form button {
-        width: 100%;
-    }
-}
-</style>
-
-    <meta charset="UTF-8">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>GHOLINO | غولینو</title>
+  <meta
+    name="description"
+    content="غولینو؛ دستیار هوشمند و ابزار مدیریت کسب‌وکار"
+  >
 
   <link rel="stylesheet" href="styles.css">
-
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    .features {
-      padding: 70px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .features-title {
-      text-align: center;
-      margin-bottom: 35px;
-    }
-
-    .features-title small {
-      color: #39e875;
-      font-size: 18px;
-    }
-
-    .features-title h2 {
-      font-size: 36px;
-      margin: 10px 0;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .feature-card {
-      padding: 25px;
-      border-radius: 20px;
-      background: rgba(20, 80, 45, 0.35);
-      border: 1px solid rgba(57, 232, 117, 0.25);
-      text-align: center;
-    }
-
-    .feature-card h3 {
-      color: #39e875;
-      font-size: 22px;
-    }
-
-    .feature-card p {
-      line-height: 2;
-    }
-
-    .feature-btn {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 10px 22px;
-      border-radius: 12px;
-      background: #39e875;
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="brand">
-      <span>G</span>
-      GHOLINO
-    </div>
+<header class="site-header">
+  <a href="index.html" class="brand">
+    <span class="brand-logo">G</span>
+    <span>GHOLINO</span>
+  </a>
 
-    <a href="dashboard.html" class="header-btn">
-      شروع کنید
-    </a>
-  </header>
+  <a href="dashboard.html" class="header-btn">
+    ورود به داشبورد
+  </a>
+</header>
 
-  <main>
+<main>
 
-    <section class="hero" id="start">
-      <div>
+  <section class="hero" id="start">
 
-        <small>
-          محصولی از GHOL BAZAR
-        </small>
+    <div class="hero-content">
 
-        <h1>
-          غولینو؛ دستیار<br>
-          هوشمند کسب‌وکار شما.
-        </h1>
+      <span class="eyebrow">
+        محصولی از GHOL BAZAR
+      </span>
 
-        <p>
-          یک تجربه مدرن، ساده و سریع برای مدیریت
-          و رشد کسب‌وکار؛ با زیرساخت آماده برای
-          اتصال ربات و سرویس‌های هوشمند.
-        </p>
+      <h1>
+        غولینو؛ دستیار
+        <span>هوشمند کسب‌وکار شما.</span>
+      </h1>
 
-        href="dashboard.html"
+      <p>
+        یک تجربه مدرن، ساده و سریع برای مدیریت و رشد کسب‌وکار؛
+        با ابزارهایی برای سفارش‌ها، مشتری‌ها، گزارش‌ها و دستیار هوشمند.
+      </p>
+
+      <div class="hero-actions">
+        <a href="dashboard.html" class="main-btn">
           شروع کنیم
         </a>
 
-      </div>
-    </section>
-
-
-    <section id="features" class="features">
-
-      <div class="features-title">
-        <small>امکانات غولینو</small>
-
-        <h2>
-          ابزارهای هوشمند برای کسب‌وکار شما
-        </h2>
-
-        <p>
-          امکانات اصلی غولینو را از اینجا انتخاب کنید.
-        </p>
+        <a href="#features" class="secondary-btn">
+          مشاهده امکانات
+        </a>
       </div>
 
-
-      <div class="features-grid">
-
-        <div class="feature-card">
-          <h3>🤖 دستیار هوشمند</h3>
-
-          <p>
-            دستیار هوشمند برای کمک به مدیریت
-            و پاسخ‌گویی سریع‌تر به مشتریان.
-          </p>
-
-          <a href="#" class="feature-btn">
-            ورود
-          </a>
-        </div>
-
-
-        <div class="feature-card">
-          <h3>📊 مدیریت کسب‌وکار</h3>
-
-          <p>
-            ابزارهای ساده برای مدیریت اطلاعات
-            و روند فعالیت کسب‌وکار شما.
-          </p>
-
-          <a href="#" class="feature-btn">
-            مشاهده
-          </a>
-        </div>
-
-
-        <div class="feature-card">
-          <h3>💬 اتصال ربات</h3>
-
-          <p>
-            آماده برای اتصال ربات‌ها و سرویس‌های
-            هوشمند به سیستم شما.
-          </p>
-
-          <a href="#" class="feature-btn">
-            شروع
-          </a>
-        </div>
-
-
-        <div class="feature-card">
-          <h3>🚀 رشد کسب‌وکار</h3>
-
-          <p>
-            ابزارهایی برای ساخت یک تجربه مدرن
-            و کمک به توسعه کسب‌وکار.
-          </p>
-
-          <a href="dashboard.html" class="feature-btn">
-            بیشتر
-          </a>
-        </div>
-
+      <div class="hero-trust">
+        <span>✓ ساده</span>
+        <span>✓ سریع</span>
+        <span>✓ مناسب موبایل</span>
       </div>
-      <section id="orders" class="orders-section">
-    <h2>📦 مدیریت سفارش‌ها</h2>
 
-    <div class="order-form">
-        <input type="text" id="customerName" placeholder="نام مشتری">
-        <input type="text" id="productName" placeholder="نام محصول">
-        <input type="number" id="orderPrice" placeholder="مبلغ سفارش">
-
-        <button onclick="addOrder()">افزودن سفارش</button>
     </div>
 
-    <div id="ordersList"></div>
-</section>
+    <div class="hero-visual">
+      <div class="hero-logo">
+        G
+      </div>
 
-    
+      <div class="floating-card floating-card-one">
+        📦
+        <strong>سفارش جدید</strong>
+        <small>در حال پردازش</small>
+      </div>
 
-  </main>
+      <div class="floating-card floating-card-two">
+        📈
+        <strong>رشد کسب‌وکار</strong>
+        <small>+۲۸٪ این ماه</small>
+      </div>
+    </div>
+
+  </section>
 
 
-  <footer>
-    © 2026 GHOLINO — A GHOL BAZAR project
-  </footer>
+  <section id="features" class="features-section">
 
-  <script src="app.js"></script>
+    <div class="section-heading">
+      <span class="eyebrow">
+        امکانات غولینو
+      </span>
+
+      <h2>
+        همه‌چیز برای مدیریت بهتر
+      </h2>
+
+      <p>
+        ابزارهای اصلی کسب‌وکار را در یک محیط ساده و یکپارچه مدیریت کنید.
+      </p>
+    </div>
+
+
+    <div class="feature-grid">
+
+      <article class="feature-card">
+        <div class="feature-icon">🤖</div>
+
+        <h3>
+          دستیار هوشمند
+        </h3>
+
+        <p>
+          برای پاسخ‌گویی سریع‌تر به مشتریان و انجام کارهای روزمره.
+        </p>
+
+        <a href="dashboard.html#assistant" class="feature-btn">
+          ورود به دستیار
+        </a>
+      </article>
+
+
+      <article class="feature-card">
+        <div class="feature-icon">📦</div>
+
+        <h3>
+          مدیریت سفارش‌ها
+        </h3>
+
+        <p>
+          سفارش‌های جدید را ثبت کنید و وضعیت آن‌ها را مدیریت کنید.
+        </p>
+
+        <a href="#orders" class="feature-btn">
+          مدیریت سفارش‌ها
+        </a>
+      </article>
+
+
+      <article class="feature-card">
+        <div class="feature-icon">👥</div>
+
+        <h3>
+          مشتری‌ها
+        </h3>
+
+        <p>
+          اطلاعات مشتریان و ارتباطات کسب‌وکار خود را بهتر مدیریت کنید.
+        </p>
+
+        <a href="dashboard.html#customers" class="feature-btn">
+          مشتری‌ها
+        </a>
+      </article>
+
+
+      <article class="feature-card">
+        <div class="feature-icon">📊</div>
+
+        <h3>
+          گزارش‌ها
+        </h3>
+
+        <p>
+          آمار مهم کسب‌وکار را ببینید و روند رشد خود را بررسی کنید.
+        </p>
+
+        <a href="dashboard.html#reports" class="feature-btn">
+          مشاهده گزارش‌ها
+        </a>
+      </article>
+
+
+      <article class="feature-card">
+        <div class="feature-icon">💬</div>
+
+        <h3>
+          پیام‌ها
+        </h3>
+
+        <p>
+          پیام‌های مشتریان و ارتباطات مهم را در یک محیط منظم ببینید.
+        </p>
+
+        <a href="dashboard.html#messages" class="feature-btn">
+          مشاهده پیام‌ها
+        </a>
+      </article>
+
+
+      <article class="feature-card">
+        <div class="feature-icon">⚙️</div>
+
+        <h3>
+          تنظیمات
+        </h3>
+
+        <p>
+          تنظیمات و امکانات پنل مدیریت غولینو را کنترل کنید.
+        </p>
+
+        <a href="dashboard.html#settings" class="feature-btn">
+          تنظیمات
+        </a>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section id="orders" class="orders-section">
+
+    <div class="section-heading">
+      <span class="eyebrow">
+        مدیریت سفارش
+      </span>
+
+      <h2>
+        سفارش جدید ثبت کنید
+      </h2>
+
+      <p>
+        اطلاعات سفارش را وارد کنید تا در همین دستگاه ذخیره شود.
+      </p>
+    </div>
+
+
+    <div class="order-panel">
+
+      <form id="orderForm" class="order-form">
+
+        <div class="input-group">
+          <label for="customerName">
+            نام مشتری
+          </label>
+
+          <input
+            type="text"
+            id="customerName"
+            placeholder="مثلاً علی رضایی"
+            autocomplete="name"
+          >
+        </div>
+
+
+        <div class="input-group">
+          <label for="productName">
+            نام محصول
+          </label>
+
+          <input
+            type="text"
+            id="productName"
+            placeholder="مثلاً لپ‌تاپ"
+          >
+        </div>
+
+
+        <div class="input-group">
+          <label for="orderPrice">
+            مبلغ سفارش
+          </label>
+
+          <input
+            type="number"
+            id="orderPrice"
+            placeholder="مثلاً 25000000"
+            min="0"
+          >
+        </div>
+
+
+        <button type="submit" class="main-btn order-submit">
+          + افزودن سفارش
+        </button>
+
+      </form>
+
+
+      <div id="ordersList" class="orders-list">
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="about-section">
+
+    <span class="eyebrow">
+      درباره GHOLINO
+    </span>
+
+    <h2>
+      کسب‌وکارت را ساده‌تر مدیریت کن.
+    </h2>
+
+    <p>
+      غولینو برای این ساخته شده که ابزارهای ضروری مدیریت کسب‌وکار
+      را در یک محیط سریع، زیبا و قابل استفاده در موبایل در اختیار شما قرار دهد.
+    </p>
+
+    <a href="dashboard.html" class="main-btn">
+      ورود به پنل مدیریت
+    </a>
+
+  </section>
+
+</main>
+
+
+<footer class="site-footer">
+  <strong>GHOLINO</strong>
+  <span>© 2026 — A GHOL BAZAR project</span>
+</footer>
+
+
+<script src="app.js"></script>
 
 </body>
 </html>
