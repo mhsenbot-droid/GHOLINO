@@ -184,8 +184,21 @@
         </div>
 
       </div>
+      <section id="orders" class="orders-section">
+    <h2>📦 مدیریت سفارش‌ها</h2>
 
-    </section>
+    <div class="order-form">
+        <input type="text" id="customerName" placeholder="نام مشتری">
+        <input type="text" id="productName" placeholder="نام محصول">
+        <input type="number" id="orderPrice" placeholder="مبلغ سفارش">
+
+        <button onclick="addOrder()">افزودن سفارش</button>
+    </div>
+
+    <div id="ordersList"></div>
+</section>
+
+    
 
   </main>
 
