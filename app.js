@@ -1,82 +1,535 @@
-let orders = JSON.parse(localStorage.getItem("gholinoOrders")) || [];
+"use strict";
 
-function addOrder() {
-    const customerName = document.getElementById("customerName").value.trim();
-    const productName = document.getElementById("productName").value.trim();
-    const orderPrice = document.getElementById("orderPrice").value.trim();
+/*
+  GHOLINO
+  Simple local business management app
+  Data is stored in localStorage.
+*/
 
-    if (!customerName || !productName || !orderPrice) {
-        alert("لطفاً همه اطلاعات سفارش را وارد کنید.");
-        return;
+const STORAGE_KEY = "gholinoOrders";
+
+
+function getOrders() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if (!saved) {
+      return [];
     }
 
-    const order = {
-        id: Date.now(),
-        customerName,
-        productName,
-        price: Number(orderPrice),
-        status: "در انتظار"
-    };
+    const parsed = JSON.parse(saved);
 
-    orders.push(order);
-    saveOrders();
-    renderOrders();
+    return Array.isArray(parsed) ? parsed : [];
 
-    document.getElementById("customerName").value = "";
-    document.getElementById("productName").value = "";
-    document.getElementById("orderPrice").value = "";
+  } catch (error) {
+    console.error("خطا در خواندن سفارش‌ها:", error);
+    return [];
+  }
 }
 
-function deleteOrder(id) {
-    orders = orders.filter(order => order.id !== id);
-    saveOrders();
-    renderOrders();
+
+function saveOrders(orders) {
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(orders)
+  );
 }
+
+
+function formatPrice(price) {
+  const number = Number(price) || 0;
+
+  return number.toLocaleString("fa-IR") + " تومان";
+}
+
+
+function escapeHTML(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+
+function showMessage(message) {
+
+  const oldToast = document.querySelector(".toast");
+
+  if (oldToast) {
+    oldToast.remove();
+  }
+
+  const toast = document.createElement("div");
+
+  toast.className = "toast";
+  toast.textContent = message;
+
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}
+
+
+/* =========================
+   ADD ORDER
+========================= */
+
+function addOrder(event) {
+
+  if (event) {
+    event.preventDefault();
+  }
+
+  const customerInput =
+    document.getElementById("customerName");
+
+  const productInput =
+    document.getElementById("productName");
+
+  const priceInput =
+    document.getElementById("orderPrice");
+
+
+  if (
+    !customerInput ||
+    !productInput ||
+    !priceInput
+  ) {
+    return;
+  }
+
+
+  const customerName =
+    customerInput.value.trim();
+
+  const productName =
+    productInput.value.trim();
+
+  const orderPrice =
+    Number(priceInput.value);
+
+
+  if (!customerName) {
+    showMessage("نام مشتری را وارد کنید.");
+    customerInput.focus();
+    return;
+  }
+
+
+  if (!productName) {
+    showMessage("نام محصول را وارد کنید.");
+    productInput.focus();
+    return;
+  }
+
+
+  if (
+    !Number.isFinite(orderPrice) ||
+    orderPrice <= 0
+  ) {
+    showMessage("مبلغ سفارش را درست وارد کنید.");
+    priceInput.focus();
+    return;
+  }
+
+
+  const orders = getOrders();
+
+
+  const order = {
+    id: Date.now(),
+    customerName,
+    productName,
+    price: orderPrice,
+    status: "در انتظار",
+    createdAt: new Date().toISOString()
+  };
+
+
+  orders.unshift(order);
+
+  saveOrders(orders);
+
+
+  customerInput.value = "";
+  productInput.value = "";
+  priceInput.value = "";
+
+
+  renderOrders();
+  renderDashboardOrders();
+  updateDashboardStats();
+
+
+  showMessage("سفارش با موفقیت ثبت شد. ✓");
+}
+
+
+/* =========================
+   CHANGE STATUS
+========================= */
 
 function changeStatus(id) {
-    const order = orders.find(order => order.id === id);
 
-    if (!order) return;
+  const orders = getOrders();
 
-    const statuses = ["در انتظار", "در حال پردازش", "ارسال شد", "تکمیل شد"];
-    const currentIndex = statuses.indexOf(order.status);
+  const order = orders.find(
+    item => item.id === id
+  );
 
-    order.status = statuses[(currentIndex + 1) % statuses.length];
 
-    saveOrders();
-    renderOrders();
+  if (!order) {
+    return;
+  }
+
+
+  const statuses = [
+    "در انتظار",
+    "در حال پردازش",
+    "ارسال شد",
+    "تکمیل شد"
+  ];
+
+
+  const currentIndex =
+    statuses.indexOf(order.status);
+
+
+  const nextIndex =
+    currentIndex === -1
+      ? 0
+      : (currentIndex + 1) % statuses.length;
+
+
+  order.status =
+    statuses[nextIndex];
+
+
+  saveOrders(orders);
+
+
+  renderOrders();
+  renderDashboardOrders();
+  updateDashboardStats();
+
+
+  showMessage(
+    `وضعیت سفارش به «${order.status}» تغییر کرد.`
+  );
 }
 
-function saveOrders() {
-    localStorage.setItem("gholinoOrders", JSON.stringify(orders));
+
+/* =========================
+   DELETE ORDER
+========================= */
+
+function deleteOrder(id) {
+
+  const orders = getOrders();
+
+  const filtered =
+    orders.filter(
+      order => order.id !== id
+    );
+
+
+  saveOrders(filtered);
+
+
+  renderOrders();
+  renderDashboardOrders();
+  updateDashboardStats();
+
+
+  showMessage("سفارش حذف شد.");
 }
+
+
+/* =========================
+   INDEX ORDERS
+========================= */
 
 function renderOrders() {
-    const ordersList = document.getElementById("ordersList");
 
-    if (!ordersList) return;
+  const list =
+    document.getElementById("ordersList");
 
-    if (orders.length === 0) {
-        ordersList.innerHTML = "<p>هنوز سفارشی ثبت نشده است.</p>";
-        return;
-    }
 
-    ordersList.innerHTML = orders.map(order => `
-        <div class="order-card">
-            <h3>📦 ${order.productName}</h3>
-            <p>👤 مشتری: ${order.customerName}</p>
-            <p>💰 مبلغ: ${order.price.toLocaleString("fa-IR")} تومان</p>
-            <p>📌 وضعیت: <strong>${order.status}</strong></p>
+  if (!list) {
+    return;
+  }
 
-            <button onclick="changeStatus(${order.id})">
-                تغییر وضعیت
+
+  const orders = getOrders();
+
+
+  if (orders.length === 0) {
+
+    list.innerHTML = `
+      <div class="empty-orders">
+        هنوز سفارشی ثبت نشده است.
+        اولین سفارش خود را از فرم بالا ثبت کنید.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  list.innerHTML =
+    orders.map(order => {
+
+      return `
+        <article class="order-card">
+
+          <div class="order-info">
+
+            <h3>
+              📦 ${escapeHTML(order.productName)}
+            </h3>
+
+            <p>
+              👤 مشتری:
+              ${escapeHTML(order.customerName)}
+            </p>
+
+            <p>
+              💰 مبلغ:
+              ${formatPrice(order.price)}
+            </p>
+
+            <p>
+              📌 وضعیت:
+              <strong>${escapeHTML(order.status)}</strong>
+            </p>
+
+          </div>
+
+
+          <div class="order-actions">
+
+            <button
+              type="button"
+              class="order-action"
+              onclick="changeStatus(${order.id})"
+            >
+              تغییر وضعیت
             </button>
 
-            <button onclick="deleteOrder(${order.id})">
-                حذف سفارش
+            <button
+              type="button"
+              class="order-action delete"
+              onclick="deleteOrder(${order.id})"
+            >
+              حذف
             </button>
-        </div>
-    `).join("");
+
+          </div>
+
+        </article>
+      `;
+
+    }).join("");
 }
 
-document.addEventListener("DOMContentLoaded", renderOrders);
+
+/* =========================
+   DASHBOARD ORDERS
+========================= */
+
+function renderDashboardOrders() {
+
+  const list =
+    document.getElementById(
+      "dashboardOrders"
+    );
+
+
+  if (!list) {
+    return;
+  }
+
+
+  const orders = getOrders();
+
+
+  if (orders.length === 0) {
+
+    list.innerHTML = `
+      <div class="empty-orders">
+        هنوز سفارشی ثبت نشده است.
+        <br>
+        از صفحه اصلی اولین سفارش را ثبت کنید.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  list.innerHTML =
+    orders.map(order => {
+
+      return `
+        <article class="dashboard-order">
+
+          <div>
+
+            <h3>
+              📦 ${escapeHTML(order.productName)}
+            </h3>
+
+            <p>
+              مشتری:
+              ${escapeHTML(order.customerName)}
+            </p>
+
+            <p>
+              مبلغ:
+              ${formatPrice(order.price)}
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <span class="status">
+              ${escapeHTML(order.status)}
+            </span>
+
+            <div
+              style="
+                margin-top:10px;
+                display:flex;
+                gap:7px;
+                flex-wrap:wrap;
+              "
+            >
+
+              <button
+                type="button"
+                class="order-action"
+                onclick="changeStatus(${order.id})"
+              >
+                تغییر وضعیت
+              </button>
+
+              <button
+                type="button"
+                class="order-action delete"
+                onclick="deleteOrder(${order.id})"
+              >
+                حذف
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+      `;
+
+    }).join("");
+}
+
+
+/* =========================
+   DASHBOARD STATS
+========================= */
+
+function updateDashboardStats() {
+
+  const countElement =
+    document.getElementById(
+      "ordersCount"
+    );
+
+
+  if (!countElement) {
+    return;
+  }
+
+
+  const orders = getOrders();
+
+
+  countElement.textContent =
+    orders.length.toLocaleString("fa-IR");
+
+
+  const salesElement =
+    document.getElementById(
+      "todaySales"
+    );
+
+
+  if (salesElement) {
+
+    const total =
+      orders.reduce(
+        (sum, order) =>
+          sum + Number(order.price || 0),
+        0
+      );
+
+
+    if (total > 0) {
+
+      salesElement.textContent =
+        total.toLocaleString("fa-IR");
+
+    } else {
+
+      salesElement.textContent =
+        "۱۲٫۵M";
+    }
+  }
+}
+
+
+/* =========================
+   ASSISTANT
+========================= */
+
+function openAssistant() {
+
+  showMessage(
+    "دستیار هوشمند آماده است. اتصال سرویس هوش مصنوعی در مرحله بعد اضافه می‌شود."
+  );
+}
+
+
+/* =========================
+   START
+========================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    const orderForm =
+      document.getElementById(
+        "orderForm"
+      );
+
+
+    if (orderForm) {
+
+      orderForm.addEventListener(
+        "submit",
+        addOrder
+      );
+    }
+
+
+    renderOrders();
+    renderDashboardOrders();
+    updateDashboardStats();
+
+  }
+);
