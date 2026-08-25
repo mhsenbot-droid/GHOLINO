@@ -1,1 +1,423 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>داشبورد GHOLINO</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #03140b;
+      color: #fff;
+    }
+
+    header {
+      padding: 20px;
+      border-bottom: 1px solid rgba(57, 232, 117, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #061d10;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .brand span {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: #39e875;
+      color: #000;
+      border-radius: 12px;
+      font-size: 24px;
+    }
+
+    .back {
+      color: #39e875;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .welcome {
+      margin-bottom: 30px;
+    }
+
+    .welcome small {
+      color: #39e875;
+      font-size: 16px;
+    }
+
+    .welcome h1 {
+      margin: 10px 0;
+      font-size: 34px;
+    }
+
+    .welcome p {
+      color: #b9c8be;
+      line-height: 2;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .stat {
+      background: #092517;
+      border: 1px solid rgba(57, 232, 117, 0.2);
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .stat small {
+      color: #aebdb3;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      margin-top: 12px;
+      color: #39e875;
+    }
+
+    .section-title {
+      margin: 35px 0 18px;
+      font-size: 24px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: #092517;
+      border: 1px solid rgba(57, 232, 117, 0.2);
+      border-radius: 20px;
+      padding: 25px;
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin: 8px 0;
+      color: #39e875;
+    }
+
+    .card p {
+      color: #b9c8be;
+      line-height: 1.9;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 11px 20px;
+      border-radius: 12px;
+      background: #39e875;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .activity {
+      margin-top: 30px;
+    }
+
+    .activity-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .activity-item:last-child {
+      border-bottom: 0;
+    }
+
+    .activity-item span {
+      color: #aebdb3;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #718078;
+      border-top: 1px solid rgba(57, 232, 117, 0.15);
+    }
+
+    @media (max-width: 800px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome h1 {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat {
+        padding: 16px;
+      }
+
+      .stat strong {
+        font-size: 23px;
+      }
+
+      header {
+        padding: 15px;
+      }
+
+      main {
+        padding: 25px 15px 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">
+      <span>G</span>
+      GHOLINO
+    </div>
+
+    <a href="index.html" class="back">
+      ← بازگشت به سایت
+    </a>
+  </header>
+
+
+  <main>
+
+    <section class="welcome">
+      <small>پنل مدیریت GHOLINO</small>
+
+      <h1>
+        خوش آمدید 👋
+      </h1>
+
+      <p>
+        اینجا مرکز مدیریت کسب‌وکار شماست.
+        اطلاعات و ابزارهای مهم را از یکجا مدیریت کنید.
+      </p>
+    </section>
+
+
+    <section class="stats">
+
+      <div class="stat">
+        <small>فروش امروز</small>
+        <strong>۱۲٫۵M</strong>
+      </div>
+
+      <div class="stat">
+        <small>سفارش‌ها</small>
+        <strong>۲۴</strong>
+      </div>
+
+      <div class="stat">
+        <small>مشتری‌ها</small>
+        <strong>۱۸۷</strong>
+      </div>
+
+      <div class="stat">
+        <small>رشد ماهانه</small>
+        <strong>۲۸٪</strong>
+      </div>
+
+    </section>
+
+
+    <h2 class="section-title">
+      ابزارهای GHOLINO
+    </h2>
+
+
+    <section class="dashboard-grid">
+
+      <div class="card">
+        <div class="card-icon">🤖</div>
+
+        <h3>دستیار هوشمند</h3>
+
+        <p>
+          با دستیار هوشمند GHOLINO
+          به سوالات مشتریان پاسخ دهید و
+          کارهای روزمره را سریع‌تر انجام دهید.
+        </p>
+
+        <a href="#" class="button">
+          ورود به دستیار
+        </a>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">📦</div>
+
+        <h3>سفارش‌ها</h3>
+
+        <p>
+          سفارش‌های جدید و قبلی را مشاهده،
+          مدیریت و پیگیری کنید.
+        </p>
+
+        <a href="#" class="button">
+          مشاهده سفارش‌ها
+        </a>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">👥</div>
+
+        <h3>مشتری‌ها</h3>
+
+        <p>
+          اطلاعات مشتریان و ارتباطات
+          کسب‌وکار خود را مدیریت کنید.
+        </p>
+
+        <a href="#" class="button">
+          مدیریت مشتری‌ها
+        </a>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">💬</div>
+
+        <h3>پیام‌ها</h3>
+
+        <p>
+          پیام‌های مشتریان و ارتباطات
+          مهم کسب‌وکار را یکجا ببینید.
+        </p>
+
+        <a href="#" class="button">
+          مشاهده پیام‌ها
+        </a>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">📊</div>
+
+        <h3>گزارش‌ها</h3>
+
+        <p>
+          عملکرد کسب‌وکار را بررسی کنید
+          و آمار مهم را مشاهده کنید.
+        </p>
+
+        <a href="#" class="button">
+          مشاهده گزارش‌ها
+        </a>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">⚙️</div>
+
+        <h3>تنظیمات</h3>
+
+        <p>
+          تنظیمات حساب و امکانات
+          GHOLINO را مدیریت کنید.
+        </p>
+
+        <a href="#" class="button">
+          تنظیمات
+        </a>
+      </div>
+
+    </section>
+
+
+    <section class="card activity">
+
+      <h2>
+        فعالیت‌های اخیر
+      </h2>
+
+      <div class="activity-item">
+        <div>
+          سفارش جدید ثبت شد
+        </div>
+        <span>۵ دقیقه پیش</span>
+      </div>
+
+      <div class="activity-item">
+        <div>
+          مشتری جدید اضافه شد
+        </div>
+        <span>۲۳ دقیقه پیش</span>
+      </div>
+
+      <div class="activity-item">
+        <div>
+          گزارش فروش به‌روزرسانی شد
+        </div>
+        <span>۱ ساعت پیش</span>
+      </div>
+
+      <div class="activity-item">
+        <div>
+          دستیار هوشمند فعال شد
+        </div>
+        <span>۲ ساعت پیش</span>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    © 2026 GHOLINO — A GHOL BAZAR project
+  </footer>
+
+</body>
+</html>
