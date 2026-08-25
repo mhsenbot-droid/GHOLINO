@@ -3,548 +3,898 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>GHOLINO | غولینو</title>
+
   <link rel="stylesheet" href="styles.css">
+
   <style>
-    .brand-logo{
-      width:52px;
-      height:52px;
-      object-fit:contain;
-      border-radius:16px;
-      background:#0b2115;
-      border:1px solid rgba(105,229,124,.25);
-      padding:4px;
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 16px;
+      background: #0b2115;
+      border: 1px solid rgba(105, 229, 124, .25);
+      padding: 4px;
     }
-    .hero-logo{
-      width:420px;
-      height:420px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin:auto;
-      background:radial-gradient(
-        circle,
-        rgba(0,255,136,.25),
-        rgba(0,255,136,.06) 55%,
-        transparent 72%
+
+    .hero-logo {
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      background:
+        radial-gradient(
+          circle,
+          rgba(0, 255, 136, .25),
+          rgba(0, 255, 136, .06) 55%,
+          transparent 72%
+        );
+      border: 1px solid rgba(105, 229, 124, .25);
+      box-shadow: 0 0 100px rgba(0, 255, 136, .15);
+    }
+
+    .hero-logo img {
+      width: 92%;
+      height: 92%;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(
+        0 25px 45px rgba(0, 255, 136, .2)
       );
-      border:1px solid rgba(105,229,124,.25);
-      box-shadow:0 0 100px rgba(0,255,136,.15);
     }
-    .hero-logo img{
-      width:92%;
-      height:92%;
-      object-fit:contain;
-      display:block;
-      filter:drop-shadow(0 25px 45px rgba(0,255,136,.2));
-    }
-    .ambassador-section{
-      width:min(1150px,calc(100% - 30px));
-      margin:90px auto;
-      padding:40px;
-      border-radius:30px;
+
+    .ambassador-section {
+      width: min(1150px, calc(100% - 30px));
+      margin: 90px auto;
+      padding: 40px;
+      border-radius: 30px;
       background:
         radial-gradient(
           circle at 80% 20%,
-          rgba(0,255,136,.14),
+          rgba(0, 255, 136, .14),
           transparent 30%
         ),
-        linear-gradient(145deg,#102c1b,#06120b);
-      border:1px solid rgba(105,229,124,.22);
+        linear-gradient(145deg, #102c1b, #06120b);
+      border: 1px solid rgba(105, 229, 124, .22);
     }
-    .ambassador-grid{
-      display:grid;
-      grid-template-columns:1fr 350px;
-      align-items:center;
-      gap:40px;
+
+    .ambassador-grid {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      align-items: center;
+      gap: 40px;
     }
-    .ambassador-image{
-      width:100%;
-      max-width:350px;
-      height:350px;
-      object-fit:contain;
-      display:block;
-      margin:auto;
-      filter:drop-shadow(
-        0 30px 50px rgba(0,255,136,.2)
+
+    .ambassador-image {
+      width: 100%;
+      max-width: 350px;
+      height: 350px;
+      object-fit: contain;
+      display: block;
+      margin: auto;
+      filter: drop-shadow(
+        0 30px 50px rgba(0, 255, 136, .2)
       );
     }
-    .ambassador-section h2{
-      font-size:clamp(32px,5vw,55px);
-      line-height:1.35;
-      margin:15px 0;
+
+    .ambassador-section h2 {
+      font-size: clamp(32px, 5vw, 55px);
+      line-height: 1.35;
+      margin: 15px 0;
     }
-    .ambassador-section h2 span{
-      color:#00ff88;
+
+    .ambassador-section h2 span {
+      color: #00ff88;
     }
-    .ambassador-section p{
-      color:#9caf9f;
-      line-height:2.1;
+
+    .ambassador-section p {
+      color: #9caf9f;
+      line-height: 2.1;
     }
-    .ambassador-badge{
-      display:inline-block;
-      padding:8px 14px;
-      border-radius:999px;
-      color:#69e57c;
-      background:rgba(105,229,124,.08);
-      border:1px solid rgba(105,229,124,.2);
-      font-size:13px;
-      font-weight:900;
+
+    .ambassador-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: #69e57c;
+      background: rgba(105, 229, 124, .08);
+      border: 1px solid rgba(105, 229, 124, .2);
+      font-size: 13px;
+      font-weight: 900;
     }
-    .ambassador-points{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-top:25px;
+
+    .ambassador-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 25px;
     }
-    .ambassador-point{
-      padding:16px;
-      border-radius:16px;
-      background:rgba(0,0,0,.16);
-      border:1px solid rgba(105,229,124,.12);
+
+    .ambassador-point {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, .16);
+      border: 1px solid rgba(105, 229, 124, .12);
     }
-    .ambassador-point strong{
-      display:block;
-      margin-bottom:6px;
+
+    .ambassador-point strong {
+      display: block;
+      margin-bottom: 6px;
     }
-    .ambassador-point span{
-      color:#819488;
-      font-size:12px;
+
+    .ambassador-point span {
+      color: #819488;
+      font-size: 12px;
     }
-    .register-section{
-      width:min(950px,calc(100% - 30px));
-      margin:80px auto;
-      padding:35px;
-      border-radius:30px;
-      background:linear-gradient(145deg,#102c1b,#07140d);
-      border:1px solid rgba(105,229,124,.22);
+
+    .register-section {
+      width: min(950px, calc(100% - 30px));
+      margin: 80px auto;
+      padding: 35px;
+      border-radius: 30px;
+      background: linear-gradient(145deg, #102c1b, #07140d);
+      border: 1px solid rgba(105, 229, 124, .22);
     }
-    .register-form{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:16px;
+
+    .register-form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
-    .input-group{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-    .input-group.full{
-      grid-column:1/-1;
+
+    .input-group.full {
+      grid-column: 1 / -1;
     }
+
     .input-group input,
-    .input-group select{
-      width:100%;
-      padding:15px;
-      border-radius:14px;
-      border:1px solid rgba(105,229,124,.2);
-      background:#07170e;
-      color:#fff;
-      outline:none;
+    .input-group select {
+      width: 100%;
+      padding: 15px;
+      border-radius: 14px;
+      border: 1px solid rgba(105, 229, 124, .2);
+      background: #07170e;
+      color: #fff;
+      outline: none;
+      box-sizing: border-box;
     }
-    .register-btn{
-      grid-column:1/-1;
-      padding:16px;
-      border:0;
-      border-radius:16px;
-      background:#69e57c;
-      color:#031008;
-      font-weight:900;
-      cursor:pointer;
+
+    .register-btn {
+      grid-column: 1 / -1;
+      padding: 16px;
+      border: 0;
+      border-radius: 16px;
+      background: #69e57c;
+      color: #031008;
+      font-weight: 900;
+      cursor: pointer;
     }
-    @media(max-width:800px){
-      .hero-logo{
-        width:300px;
-        height:300px;
+
+    .orders-section,
+    .cta-section {
+      width: min(1150px, calc(100% - 30px));
+      margin: 80px auto;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 5vw, 50px);
+      margin: 12px 0;
+    }
+
+    .section-heading p {
+      color: #9caf9f;
+      line-height: 2;
+    }
+
+    .order-card {
+      padding: 30px;
+      border-radius: 24px;
+      background: linear-gradient(145deg, #102c1b, #07140d);
+      border: 1px solid rgba(105, 229, 124, .2);
+      text-align: center;
+    }
+
+    .cta-section {
+      padding: 60px 30px;
+      text-align: center;
+      border-radius: 30px;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(0, 255, 136, .15),
+          transparent 65%
+        ),
+        #07140d;
+      border: 1px solid rgba(105, 229, 124, .2);
+    }
+
+    .cta-section h2 {
+      font-size: clamp(30px, 5vw, 50px);
+      margin-bottom: 15px;
+    }
+
+    .cta-section p {
+      color: #9caf9f;
+      line-height: 2;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 15px 28px;
+      border-radius: 16px;
+      background: #69e57c;
+      color: #031008;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 800px) {
+      .hero-logo {
+        width: 300px;
+        height: 300px;
       }
-      .ambassador-grid{
-        grid-template-columns:1fr;
-        text-align:center;
+
+      .ambassador-section {
+        padding: 25px;
       }
-      .ambassador-image{
-        order:-1;
-        width:260px;
-        height:260px;
+
+      .ambassador-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
       }
-      .ambassador-points{
-        grid-template-columns:1fr;
+
+      .ambassador-image {
+        order: -1;
+        width: 260px;
+        height: 260px;
       }
-      .register-form{
-        grid-template-columns:1fr;
+
+      .ambassador-points {
+        grid-template-columns: 1fr;
       }
+
+      .register-form {
+        grid-template-columns: 1fr;
+      }
+
       .input-group.full,
-      .register-btn{
-        grid-column:auto;
+      .register-btn {
+        grid-column: auto;
       }
     }
   </style>
 </head>
+
 <body>
-<header class="site-header">
-  <a href="index.html" class="brand">
-    <img
-      class="brand-logo"
-      src="assets/    gholino-ambassador.PNG"
-      alt="سفیر برند GHOLINO"
-    >
-    <span>GHOLINO</span>
-  </a>
-  <a
-    href="dashboard.html"
-    class="header-btn"
-  >
-    ورود به داشبورد
-  </a>
-</header>
-<main>
-<section class="hero" id="start">
-  <div class="hero-content">
-    <span class="eyebrow">
-      محصولی از GHOL BAZAR
-    </span>
-    <h1>
-      غولینو؛ دستیار
-      <span>هوشمند کسب‌وکار شما.</span>
-    </h1>
-    <p>
-      فروش، سفارش‌ها، مشتری‌ها و اطلاعات کسب‌وکار
-      را در یک محیط ساده و هوشمند مدیریت کنید.
-    </p>
-    <div class="hero-actions">
-      <a
-        href="#register"
-        class="main-btn"
-      >
-        ثبت فروشگاه
-      </a>
-      <a
-        href="#features"
-        class="secondary-btn"
-      >
-        مشاهده امکانات
-      </a>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <div class="hero-logo">
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="site-header">
+
+    <a href="index.html" class="brand">
+
       <img
-        src="assets/    gholino-ambassador.PNG"
+        class="brand-logo"
+        src="assets/gholino-ambassador.PNG"
         alt="سفیر برند GHOLINO"
       >
-    </div>
-  </div>
-</section>
-<section
-  id="features"
-  class="features-section"
->
-  <div class="section-heading">
-    <span class="eyebrow">
-      امکانات غولینو
-    </span>
-    <h2>
-      همه‌چیز برای مدیریت بهتر
-    </h2>
-    <p>
-      ابزارهای اصلی کسب‌وکار را یکجا در اختیار داشته باشید.
-    </p>
-  </div>
-  <div class="feature-grid">
-    <article class="feature-card">
-      <div class="feature-icon">🤖</div>
-      <h3>دستیار هوشمند</h3>
-      <p>
-        برای پاسخ‌گویی سریع‌تر و کمک به مدیریت روزانه کسب‌وکار.
-      </p>
-      <a href="dashboard.html#assistant" class="feature-btn">
-        ورود به دستیار
-      </a>
-    </article>
-    <article class="feature-card">
-      <div class="feature-icon">📦</div>
-      <h3>مدیریت سفارش‌ها</h3>
-      <p>
-        سفارش‌های جدید را ثبت کنید و وضعیت آن‌ها را مدیریت کنید.
-      </p>
-      <a href="#orders" class="feature-btn">
-        سفارش‌ها
-      </a>
-    </article>
-    <article class="feature-card">
-      <div class="feature-icon">👥</div>
-      <h3>مشتری‌ها</h3>
-      <p>
-        اطلاعات مشتریان و ارتباطات کسب‌وکار را مدیریت کنید.
-      </p>
-      <a href="dashboard.html#customers" class="feature-btn">
-        مشتری‌ها
-      </a>
-    </article>
-    <article class="feature-card">
-      <div class="feature-icon">📊</div>
-      <h3>گزارش‌ها</h3>
-      <p>
-        آمار و وضعیت کسب‌وکار را بررسی کنید.
-      </p>
-      <a href="dashboard.html#reports" class="feature-btn">
-        گزارش‌ها
-      </a>
-    </article>
-    <article class="feature-card">
-      <div class="feature-icon">💬</div>
-      <h3>پیام‌ها</h3>
-      <p>
-        ارتباطات مهم مشتریان را در یک محیط منظم ببینید.
-      </p>
-      <a href="dashboard.html#messages" class="feature-btn">
-        پیام‌ها
-      </a>
-    </article>
-    <article class="feature-card">
-      <div class="feature-icon">⚙️</div>
-      <h3>تنظیمات</h3>
-      <p>
-        تنظیمات کسب‌وکار و پنل مدیریت را کنترل کنید.
-      </p>
-      <a href="dashboard.html#settings" class="feature-btn">
-        تنظیمات
-      </a>
-    </article>
-  </div>
-</section>
-<section
-  id="register"
-  class="register-section"
->
-  <div class="section-heading">
-    <span class="eyebrow">
-      شروع کار با غولینو
-    </span>
-    <h2>
-      اطلاعات فروشگاه خود را ثبت کنید
-    </h2>
-    <p>
-      اطلاعات اولیه فروشگاه را وارد کنید.
-    </p>
-  </div>
-  <form
-    id="storeRegisterForm"
-    class="register-form"
-  >
-    <div class="input-group">
-      <label for="storeName">
-        نام فروشگاه
-      </label>
-      <input
-        id="storeName"
-        type="text"
-        placeholder="مثلاً فروشگاه غولینو"
-        required
-      >
-    </div>
-    <div class="input-group">
-      <label for="ownerName">
-        نام مدیر فروشگاه
-      </label>
-      <input
-        id="ownerName"
-        type="text"
-        placeholder="نام و نام خانوادگی"
-        required
-      >
-    </div>
-    <div class="input-group">
-      <label for="phone">
-        شماره تماس
-      </label>
-      <input
-        id="phone"
-        type="tel"
-        placeholder="09xxxxxxxxx"
-        required
-      >
-    </div>
-    <div class="input-group">
-      <label for="storeType">
-        نوع کسب‌وکار
-      </label>
-      <select id="storeType">
-        <option value="">
-          انتخاب کنید
-        </option>
-        <option value="فروشگاه اینترنتی">
-          فروشگاه اینترنتی
-        </option>
-        <option value="فروشگاه فیزیکی">
-          فروشگاه فیزیکی
-        </option>
-        <option value="خدماتی">
-          خدماتی
-        </option>
-        <option value="تولیدی">
-          تولیدی
-        </option>
-        <option value="سایر">
-          سایر
-        </option>
-      </select>
-    </div>
-    <div class="input-group full">
-      <label for="storeAddress">
-        آدرس / توضیحات فروشگاه
-      </label>
-      <input
-        id="storeAddress"
-        type="text"
-        placeholder="آدرس یا توضیحات کوتاه"
-      >
-    </div>
-    <button
-      type="submit"
-      class="register-btn"
+
+      <span>GHOLINO</span>
+
+    </a>
+
+    <a
+      href="dashboard.html"
+      class="header-btn"
     >
-      ثبت اطلاعات فروشگاه
-    </button>
-  </form>
-</section>
-<section class="ambassador-section">
-  <div class="ambassador-grid">
-    <div>
-      <span class="ambassador-badge">
-        ✦ سفیر برند GHOLINO
-      </span>
+      ورود به داشبورد
+    </a>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main>
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="start">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          محصولی از GHOL BAZAR
+        </span>
+
+        <h1>
+          غولینو؛ دستیار
+          <span>
+            هوشمند کسب‌وکار شما.
+          </span>
+        </h1>
+
+        <p>
+          فروش، سفارش‌ها، مشتری‌ها و اطلاعات کسب‌وکار
+          را در یک محیط ساده و هوشمند مدیریت کنید.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            href="#register"
+            class="main-btn"
+          >
+            ثبت فروشگاه
+          </a>
+
+          <a
+            href="#features"
+            class="secondary-btn"
+          >
+            مشاهده امکانات
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="hero-visual">
+
+        <div class="hero-logo">
+
+          <img
+            src="assets/gholino-ambassador.PNG"
+            alt="سفیر برند GHOLINO"
+          >
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+
+    <section
+      id="features"
+      class="features-section"
+    >
+
+      <div class="section-heading">
+
+        <span class="eyebrow">
+          امکانات غولینو
+        </span>
+
+        <h2>
+          همه‌چیز برای مدیریت بهتر
+        </h2>
+
+        <p>
+          ابزارهای اصلی کسب‌وکار را یکجا در اختیار داشته باشید.
+        </p>
+
+      </div>
+
+
+      <div class="feature-grid">
+
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            🤖
+          </div>
+
+          <h3>
+            دستیار هوشمند
+          </h3>
+
+          <p>
+            برای پاسخ‌گویی سریع‌تر و کمک به مدیریت روزانه کسب‌وکار.
+          </p>
+
+          <a
+            href="dashboard.html#assistant"
+            class="feature-btn"
+          >
+            ورود به دستیار
+          </a>
+
+        </article>
+
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            📦
+          </div>
+
+          <h3>
+            مدیریت سفارش‌ها
+          </h3>
+
+          <p>
+            سفارش‌های جدید را ثبت کنید و وضعیت آن‌ها را مدیریت کنید.
+          </p>
+
+          <a
+            href="#orders"
+            class="feature-btn"
+          >
+            سفارش‌ها
+          </a>
+
+        </article>
+
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            👥
+          </div>
+
+          <h3>
+            مشتری‌ها
+          </h3>
+
+          <p>
+            اطلاعات مشتریان و ارتباطات کسب‌وکار را مدیریت کنید.
+          </p>
+
+          <a
+            href="dashboard.html#customers"
+            class="feature-btn"
+          >
+            مشتری‌ها
+          </a>
+
+        </article>
+
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            📊
+          </div>
+
+          <h3>
+            گزارش‌ها
+          </h3>
+
+          <p>
+            آمار و وضعیت کسب‌وکار را بررسی کنید.
+          </p>
+
+          <a
+            href="dashboard.html#reports"
+            class="feature-btn"
+          >
+            گزارش‌ها
+          </a>
+
+        </article>
+
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            💬
+          </div>
+
+          <h3>
+            پیام‌ها
+          </h3>
+
+          <p>
+            ارتباطات مهم مشتریان را در یک محیط منظم ببینید.
+          </p>
+
+          <a
+            href="dashboard.html#messages"
+            class="feature-btn"
+          >
+            پیام‌ها
+          </a>
+
+        </article>
+
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            ⚙️
+          </div>
+
+          <h3>
+            تنظیمات
+          </h3>
+
+          <p>
+            تنظیمات کسب‌وکار و پنل مدیریت را کنترل کنید.
+          </p>
+
+          <a
+            href="dashboard.html#settings"
+            class="feature-btn"
+          >
+            تنظیمات
+          </a>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         REGISTER
+    ========================== -->
+
+    <section
+      id="register"
+      class="register-section"
+    >
+
+      <div class="section-heading">
+
+        <span class="eyebrow">
+          شروع کار با غولینو
+        </span>
+
+        <h2>
+          اطلاعات فروشگاه خود را ثبت کنید
+        </h2>
+
+        <p>
+          اطلاعات اولیه فروشگاه را وارد کنید.
+        </p>
+
+      </div>
+
+
+      <form
+        id="storeRegisterForm"
+        class="register-form"
+      >
+
+        <div class="input-group">
+
+          <label for="storeName">
+            نام فروشگاه
+          </label>
+
+          <input
+            id="storeName"
+            type="text"
+            placeholder="مثلاً فروشگاه غولینو"
+            required
+          >
+
+        </div>
+
+
+        <div class="input-group">
+
+          <label for="ownerName">
+            نام مدیر فروشگاه
+          </label>
+
+          <input
+            id="ownerName"
+            type="text"
+            placeholder="نام و نام خانوادگی"
+            required
+          >
+
+        </div>
+
+
+        <div class="input-group">
+
+          <label for="phone">
+            شماره تماس
+          </label>
+
+          <input
+            id="phone"
+            type="tel"
+            placeholder="09xxxxxxxxx"
+            required
+          >
+
+        </div>
+
+
+        <div class="input-group">
+
+          <label for="storeType">
+            نوع کسب‌وکار
+          </label>
+
+          <select id="storeType">
+
+            <option value="">
+              انتخاب کنید
+            </option>
+
+            <option value="فروشگاه اینترنتی">
+              فروشگاه اینترنتی
+            </option>
+
+            <option value="فروشگاه فیزیکی">
+              فروشگاه فیزیکی
+            </option>
+
+            <option value="خدماتی">
+              خدماتی
+            </option>
+
+            <option value="تولیدی">
+              تولیدی
+            </option>
+
+            <option value="سایر">
+              سایر
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="input-group full">
+
+          <label for="storeAddress">
+            آدرس / توضیحات فروشگاه
+          </label>
+
+          <input
+            id="storeAddress"
+            type="text"
+            placeholder="آدرس یا توضیحات کوتاه"
+          >
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="register-btn"
+        >
+          ثبت اطلاعات فروشگاه
+        </button>
+
+      </form>
+
+    </section>
+
+
+    <!-- =========================
+         BRAND AMBASSADOR
+    ========================== -->
+
+    <section
+      class="ambassador-section"
+    >
+
+      <div class="ambassador-grid">
+
+
+        <div>
+
+          <span class="ambassador-badge">
+            ✦ سفیر برند GHOLINO
+          </span>
+
+          <h2>
+
+            سفیر غولینو،
+
+            <br>
+
+            <span>
+              همراه کسب‌وکار شماست.
+            </span>
+
+          </h2>
+
+          <p>
+            سفیر برند، شخصیت اصلی تجربه غولینو است؛
+            یک همراه هوشمند برای مدیریت بهتر کسب‌وکار.
+          </p>
+
+
+          <div class="ambassador-points">
+
+
+            <div class="ambassador-point">
+
+              <strong>
+                🤝 همراه
+              </strong>
+
+              <span>
+                کنار کسب‌وکار شما
+              </span>
+
+            </div>
+
+
+            <div class="ambassador-point">
+
+              <strong>
+                ⚡ سریع
+              </strong>
+
+              <span>
+                مدیریت ساده و سریع
+              </span>
+
+            </div>
+
+
+            <div class="ambassador-point">
+
+              <strong>
+                🧠 هوشمند
+              </strong>
+
+              <span>
+                کمک برای تصمیم بهتر
+              </span>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+        <img
+          class="ambassador-image"
+          src="assets/gholino-ambassador.PNG"
+          alt="سفیر برند GHOLINO"
+        >
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ORDERS
+    ========================== -->
+
+    <section
+      id="orders"
+      class="orders-section"
+    >
+
+      <div class="section-heading">
+
+        <span class="eyebrow">
+          مدیریت سفارش‌ها
+        </span>
+
+        <h2>
+          سفارش‌های کسب‌وکار را ساده مدیریت کنید
+        </h2>
+
+        <p>
+          ثبت و پیگیری سفارش‌ها از طریق پنل غولینو.
+        </p>
+
+      </div>
+
+
+      <div class="order-card">
+
+        <div class="feature-icon">
+          📦
+        </div>
+
+        <h3>
+          مدیریت هوشمند سفارش
+        </h3>
+
+        <p>
+          برای مشاهده و مدیریت سفارش‌ها وارد داشبورد شوید.
+        </p>
+
+        <a
+          href="dashboard.html"
+          class="feature-btn"
+        >
+          ورود به داشبورد
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section class="cta-section">
+
       <h2>
-        سفیر غولینو،
-        <br>
-        <span>همراه کسب‌وکار شماست.</span>
+        آماده شروع هستید؟
       </h2>
+
       <p>
-        سفیر برند، شخصیت اصلی تجربه غولینو است؛
-        یک همراه هوشمند برای مدیریت بهتر کسب‌وکار.
+        غولینو را برای مدیریت هوشمند کسب‌وکارتان امتحان کنید.
       </p>
-      <div class="ambassador-points">
-        <div class="ambassador-point">
-          <strong>🤝 همراه</strong>
-          <span>کنار کسب‌وکار شما</span>
-        </div>
-        <div class="ambassador-point">
-          <strong>⚡ سریع</strong>
-          <span>مدیریت ساده و سریع</span>
-        </div>
-        <div class="ambassador-point">
-          <strong>🧠 هوشمند</strong>
-          <span>کمک برای تصمیم بهتر</span>
-        </div>
-      </div>
-    </div>
-    <img
-      class="ambassador-image"
-      src="assets/    gholino-ambassador.PNG"
-      alt="سفیر برند GHOLINO"
-    >
-  </div>
-</section>
-<section id="orders">
-  <div class="section-heading">
-    <span class="eyebrow">
-      مدیریت سفارش
-    </span>
-    <h2>
-      سفارش جدید ثبت کنید
-    </h2>
-  </div>
-  <div class="order-panel">
-    <form
-      id="orderForm"
-      class="order-form"
-    >
-      <div class="input-group">
-        <label for="customerName">
-          نام مشتری
-        </label>
-        <input
-          id="customerName"
-          type="text"
-          placeholder="مثلاً علی رضایی"
-        >
-      </div>
-      <div class="input-group">
-        <label for="productName">
-          نام محصول
-        </label>
-        <input
-          id="productName"
-          type="text"
-          placeholder="مثلاً کفش ورزشی"
-        >
-      </div>
-      <div class="input-group">
-        <label for="orderPrice">
-          مبلغ سفارش
-        </label>
-        <input
-          id="orderPrice"
-          type="number"
-          placeholder="مثلاً 2500000"
-        >
-      </div>
-      <button
-        type="submit"
-        class="order-submit"
+
+      <a
+        href="#register"
+        class="cta-btn"
       >
-        ثبت سفارش
-      </button>
-    </form>
-    <div
-      id="ordersList"
-      class="orders-list"
-    ></div>
-  </div>
-</section>
-</main>
-<footer class="site-footer">
-  <strong>GHOLINO</strong>
-  <br>
-  دستیار هوشمند کسب‌وکار
-  <br><br>
-  © 2026 GHOL BAZAR
-</footer>
-<script src="app.js"></script>
-<script>
-  const storeForm =
-    document.getElementById("storeRegisterForm");
-  if (storeForm) {
-    storeForm.addEventListener(
-      "submit",
-      function(event) {
-        event.preventDefault();
-        const store = {
-          storeName:
-            document.getElementById("storeName").value.trim(),
-          ownerName:
-            document.getElementById("ownerName").value.trim(),
-          phone:
-            document.getElementById("phone").value.trim(),
-          storeType:
-            document.getElementById("storeType").value,
-          storeAddress:
-            document.getElementById("storeAddress").value.trim(),
-          updatedAt:
-            new Date().toISOString()
-        };
-        localStorage.setItem(
-          "gholinoStore",
-          JSON.stringify(store)
-        );
-        alert(
-          "اطلاعات فروشگاه با موفقیت ذخیره شد."
-        );
-        window.location.href =
-          "dashboard.html";
-      }
-    );
-  }
-</script>
+        شروع کار با غولینو
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="site-footer">
+
+    <div>
+
+      <strong>
+        GHOLINO
+      </strong>
+
+      <p>
+        دستیار هوشمند کسب‌وکار شما
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script src="app.js"></script>
+
 </body>
 </html>
