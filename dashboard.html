@@ -1,1700 +1,1388 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>پنل مدیریت GHOLINO</title>
-
-  <style>
-    :root {
-      --bg: #06150d;
-      --bg2: #0a2115;
-      --card: #0d291b;
-      --card2: #102f20;
-      --border: #1f6038;
-      --green: #69e57c;
-      --green-dark: #173d27;
-      --white: #f5fff7;
-      --muted: #a9b9ae;
-      --danger: #ff7676;
-      --gold: #f2c96b;
-      --shadow: 0 20px 60px rgba(0,0,0,.28);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Tahoma,
-        Arial,
-        sans-serif;
-
-      background:
-        radial-gradient(circle at 90% 0%, rgba(105,229,124,.08), transparent 28%),
-        radial-gradient(circle at 10% 30%, rgba(105,229,124,.04), transparent 25%),
-        var(--bg);
-
-      color: var(--white);
-      min-height: 100vh;
-      line-height: 1.8;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-
-      background: rgba(6,21,13,.92);
-      backdrop-filter: blur(18px);
-
-      border-bottom: 1px solid rgba(105,229,124,.12);
-    }
-
-    .header-inner {
-      width: min(1180px, calc(100% - 32px));
-      margin: auto;
-
-      min-height: 82px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-
-      font-weight: 900;
-      font-size: 24px;
-      letter-spacing: .5px;
-    }
-
-    .brand-mark {
-      width: 46px;
-      height: 46px;
-
-      display: grid;
-      place-items: center;
-
-      border-radius: 15px;
-
-      background: var(--green);
-      color: #06150d;
-
-      font-size: 25px;
-      font-weight: 950;
-
-      box-shadow: 0 10px 30px rgba(105,229,124,.2);
-    }
-
-    .back {
-      color: var(--green);
-      font-weight: 700;
-      padding: 10px 14px;
-      border-radius: 12px;
-      transition: .2s;
-    }
-
-    .back:hover {
-      background: rgba(105,229,124,.08);
-    }
-
-    /* =========================
-       CONTAINER
-    ========================= */
-
-    main {
-      width: min(1180px, calc(100% - 32px));
-      margin: auto;
-      padding: 46px 0 80px;
-    }
-
-    /* =========================
-       REGISTRATION
-    ========================= */
-
-    #registration {
-      min-height: calc(100vh - 82px);
-
-      display: none;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .registration-box {
-      width: min(760px, 100%);
-      background:
-        linear-gradient(
-          145deg,
-          rgba(105,229,124,.08),
-          transparent 35%
-        ),
-        var(--card);
-
-      border: 1px solid var(--border);
-      border-radius: 30px;
-
-      padding: 38px;
-
-      box-shadow: var(--shadow);
-    }
-
-    .registration-logo {
-      width: 72px;
-      height: 72px;
-
-      display: grid;
-      place-items: center;
-
-      margin-bottom: 22px;
-
-      border-radius: 22px;
-
-      background: var(--green);
-      color: #06150d;
-
-      font-size: 36px;
-      font-weight: 950;
-    }
-
-    .eyebrow {
-      color: var(--green);
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .registration-box h1 {
-      font-size: clamp(28px, 6vw, 46px);
-      line-height: 1.3;
-      margin-bottom: 12px;
-    }
-
-    .registration-box > p {
-      color: var(--muted);
-      margin-bottom: 30px;
-      font-size: 16px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    label {
-      color: #dce9df;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-
-      border: 1px solid #285c3b;
-      outline: none;
-
-      background: #081c11;
-      color: var(--white);
-
-      border-radius: 14px;
-
-      padding: 14px 15px;
-
-      transition: .2s;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(105,229,124,.09);
-    }
-
-    textarea {
-      min-height: 105px;
-      resize: vertical;
-    }
-
-    .primary-btn {
-      width: 100%;
-      border: 0;
-
-      margin-top: 22px;
-      padding: 15px 20px;
-
-      border-radius: 15px;
-
-      background: var(--green);
-      color: #06150d;
-
-      font-weight: 950;
-      cursor: pointer;
-
-      transition: .2s;
-    }
-
-    .primary-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(105,229,124,.18);
-    }
-
-    .small-note {
-      color: #7f9686;
-      font-size: 12px;
-      margin-top: 12px;
-      text-align: center;
-    }
-
-    /* =========================
-       DASHBOARD
-    ========================= */
-
-    #dashboard {
-      display: none;
-    }
-
-    .welcome {
-      margin-bottom: 32px;
-    }
-
-    .welcome small {
-      color: var(--green);
-      font-weight: 800;
-      font-size: 15px;
-    }
-
-    .welcome h1 {
-      font-size: clamp(32px, 6vw, 58px);
-      line-height: 1.25;
-      margin: 8px 0 12px;
-    }
-
-    .welcome p {
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    /* =========================
-       STORE PROFILE
-    ========================= */
-
-    .store-profile {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-
-      padding: 24px;
-      margin-bottom: 24px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .store-info {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .store-avatar {
-      width: 64px;
-      height: 64px;
-
-      display: grid;
-      place-items: center;
-
-      border-radius: 18px;
-
-      background: var(--green-dark);
-      border: 1px solid var(--border);
-
-      color: var(--green);
-      font-size: 27px;
-      font-weight: 950;
-    }
-
-    .store-info h2 {
-      font-size: 20px;
-    }
-
-    .store-info p {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .outline-btn {
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--green);
-
-      padding: 11px 16px;
-      border-radius: 12px;
-
-      cursor: pointer;
-      font-weight: 800;
-    }
-
-    /* =========================
-       STATS
-    ========================= */
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-
-      margin-bottom: 50px;
-    }
-
-    .stat {
-      background: var(--card);
-      border: 1px solid var(--border);
-
-      border-radius: 22px;
-      padding: 24px;
-
-      min-height: 145px;
-    }
-
-    .stat small {
-      display: block;
-      color: var(--muted);
-      margin-bottom: 15px;
-    }
-
-    .stat strong {
-      display: block;
-      color: var(--green);
-      font-size: 30px;
-      line-height: 1.2;
-    }
-
-    .stat span {
-      display: block;
-      color: #7e9585;
-      font-size: 12px;
-      margin-top: 7px;
-    }
-
-    /* =========================
-       SECTION
-    ========================= */
-
-    .section-title {
-      font-size: clamp(28px, 5vw, 44px);
-      margin: 35px 0 22px;
-    }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-
-      border-radius: 25px;
-
-      padding: 30px;
-
-      box-shadow: 0 12px 40px rgba(0,0,0,.12);
-    }
-
-    .card-icon {
-      font-size: 34px;
-      margin-bottom: 15px;
-    }
-
-    .card h3 {
-      color: var(--green);
-      font-size: 24px;
-      margin-bottom: 12px;
-    }
-
-    .card p {
-      color: var(--muted);
-      margin-bottom: 22px;
-    }
-
-    .card-btn {
-      display: inline-block;
-
-      background: var(--green);
-      color: #06150d;
-
-      border-radius: 13px;
-      padding: 12px 18px;
-
-      font-weight: 900;
-    }
-
-    /* =========================
-       BRAND AMBASSADOR
-    ========================= */
-
-    .ambassador {
-      position: relative;
-      overflow: hidden;
-
-      background:
-        radial-gradient(
-          circle at 90% 10%,
-          rgba(105,229,124,.14),
-          transparent 35%
-        ),
-        linear-gradient(
-          145deg,
-          #10351f,
-          #0b2417
-        );
-
-      border: 1px solid #317447;
-      border-radius: 28px;
-
-      padding: 32px;
-
-      margin-top: 22px;
-    }
-
-    .ambassador::after {
-      content: "G";
-
-      position: absolute;
-      left: -35px;
-      bottom: -90px;
-
-      font-size: 260px;
-      line-height: 1;
-
-      color: rgba(105,229,124,.035);
-      font-weight: 950;
-    }
-
-    .ambassador-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .ambassador-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-
-      background: rgba(105,229,124,.1);
-      border: 1px solid rgba(105,229,124,.25);
-
-      color: var(--green);
-
-      padding: 7px 12px;
-      border-radius: 999px;
-
-      font-size: 12px;
-      font-weight: 900;
-
-      margin-bottom: 13px;
-    }
-
-    .ambassador h2 {
-      font-size: clamp(27px, 5vw, 43px);
-      margin-bottom: 10px;
-    }
-
-    .ambassador p {
-      max-width: 700px;
-      color: #b8cbbd;
-    }
-
-    .ambassador-icon {
-      flex-shrink: 0;
-
-      width: 82px;
-      height: 82px;
-
-      display: grid;
-      place-items: center;
-
-      border-radius: 25px;
-
-      background: var(--green);
-      color: #06150d;
-
-      font-size: 40px;
-      font-weight: 950;
-    }
-
-    .ambassador-features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 13px;
-
-      margin-top: 25px;
-    }
-
-    .ambassador-feature {
-      padding: 16px;
-
-      border-radius: 17px;
-
-      background: rgba(0,0,0,.15);
-      border: 1px solid rgba(105,229,124,.13);
-    }
-
-    .ambassador-feature strong {
-      display: block;
-      color: var(--white);
-      margin-bottom: 5px;
-    }
-
-    .ambassador-feature span {
-      color: #91a596;
-      font-size: 12px;
-    }
-
-    .ambassador-action {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-
-      margin-top: 25px;
-    }
-
-    .ambassador-primary {
-      background: var(--green);
-      color: #06150d;
-
-      border: 0;
-      border-radius: 13px;
-
-      padding: 13px 20px;
-
-      font-weight: 950;
-      cursor: pointer;
-    }
-
-    .ambassador-secondary {
-      background: transparent;
-      color: var(--green);
-
-      border: 1px solid #327348;
-      border-radius: 13px;
-
-      padding: 13px 20px;
-
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    /* =========================
-       MODAL
-    ========================= */
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 500;
-
-      display: none;
-      align-items: center;
-      justify-content: center;
-
-      padding: 18px;
-
-      background: rgba(0,0,0,.72);
-      backdrop-filter: blur(8px);
-    }
-
-    .modal.open {
-      display: flex;
-    }
-
-    .modal-box {
-      width: min(650px, 100%);
-
-      max-height: 90vh;
-      overflow-y: auto;
-
-      background: #0b2115;
-
-      border: 1px solid var(--border);
-      border-radius: 25px;
-
-      padding: 28px;
-    }
-
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-
-      margin-bottom: 22px;
-    }
-
-    .modal-header h2 {
-      color: var(--green);
-    }
-
-    .close {
-      width: 40px;
-      height: 40px;
-
-      border-radius: 50%;
-
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--white);
-
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 850px) {
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .dashboard-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .ambassador-features {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 620px) {
-      main {
-        width: min(100% - 22px, 1180px);
-        padding-top: 28px;
-      }
-
-      .header-inner {
-        width: calc(100% - 22px);
-      }
-
-      .header-inner {
-        min-height: 70px;
-      }
-
-      .brand {
-        font-size: 19px;
-      }
-
-      .brand-mark {
-        width: 40px;
-        height: 40px;
-        border-radius: 13px;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .registration-box {
-        padding: 24px 18px;
-        border-radius: 23px;
-      }
-
-      .stats {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      .stat {
-        padding: 18px;
-        min-height: 125px;
-      }
-
-      .stat strong {
-        font-size: 25px;
-      }
-
-      .store-profile {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .ambassador {
-        padding: 24px 20px;
-      }
-
-      .ambassador-top {
-        flex-direction: column;
-      }
-
-      .ambassador-icon {
-        width: 65px;
-        height: 65px;
-        font-size: 31px;
-      }
-
-      .card {
-        padding: 24px 20px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پنل مدیریت GHOLINO</title>
+
+<style>
+:root{
+  --bg:#06110c;
+  --bg2:#091b12;
+  --card:#0c2417;
+  --card2:#102c1c;
+  --border:#1c5c36;
+  --green:#69e57c;
+  --green2:#00ff88;
+  --white:#f4fff7;
+  --muted:#a9b9ae;
+  --danger:#ff7373;
+  --shadow:0 25px 80px rgba(0,0,0,.35);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-height:100vh;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Tahoma,
+    Arial,
+    sans-serif;
+  background:
+    radial-gradient(circle at 85% 0%,rgba(0,255,136,.10),transparent 30%),
+    radial-gradient(circle at 0% 45%,rgba(105,229,124,.06),transparent 28%),
+    var(--bg);
+  color:var(--white);
+  line-height:1.8;
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(6,17,12,.90);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(105,229,124,.12);
+}
+
+.header-inner{
+  width:min(1180px,calc(100% - 28px));
+  min-height:78px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-logo{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  object-fit:cover;
+  background:#102b1b;
+  border:1px solid #2b7345;
+}
+
+.brand-text strong{
+  display:block;
+  font-size:20px;
+  letter-spacing:.5px;
+}
+
+.brand-text span{
+  color:#7e9384;
+  font-size:11px;
+}
+
+.back{
+  color:var(--green);
+  font-weight:800;
+  padding:10px 14px;
+  border-radius:12px;
+}
+
+.back:hover{
+  background:rgba(105,229,124,.08);
+}
+
+/* MAIN */
+
+main{
+  width:min(1180px,calc(100% - 28px));
+  margin:auto;
+  padding:42px 0 90px;
+}
+
+/* REGISTRATION */
+
+#registration{
+  min-height:calc(100vh - 78px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+.registration-box{
+  width:min(760px,100%);
+  padding:36px;
+  border-radius:30px;
+  border:1px solid var(--border);
+  background:
+    radial-gradient(circle at 100% 0%,rgba(105,229,124,.12),transparent 30%),
+    var(--card);
+  box-shadow:var(--shadow);
+}
+
+.registration-brand{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  margin-bottom:25px;
+}
+
+.registration-brand img{
+  width:82px;
+  height:82px;
+  object-fit:cover;
+  border-radius:25px;
+  border:1px solid #34794a;
+  background:#102b1b;
+}
+
+.eyebrow{
+  color:var(--green);
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.registration-box h1{
+  font-size:clamp(30px,6vw,48px);
+  line-height:1.25;
+}
+
+.registration-box > p{
+  color:var(--muted);
+  margin:0 0 30px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:17px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+label{
+  color:#dce9df;
+  font-size:14px;
+  font-weight:800;
+}
+
+input,select,textarea{
+  width:100%;
+  color:var(--white);
+  background:#07190f;
+  border:1px solid #285d3c;
+  border-radius:14px;
+  padding:14px;
+  outline:none;
+  transition:.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(105,229,124,.09);
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.primary{
+  width:100%;
+  border:0;
+  border-radius:15px;
+  padding:15px;
+  margin-top:22px;
+  background:linear-gradient(135deg,var(--green),var(--green2));
+  color:#06120b;
+  font-weight:950;
+}
+
+.note{
+  text-align:center;
+  color:#708679;
+  font-size:12px;
+  margin-top:12px;
+}
+
+/* DASHBOARD */
+
+#dashboard{
+  display:none;
+}
+
+.welcome{
+  margin-bottom:28px;
+}
+
+.welcome small{
+  color:var(--green);
+  font-weight:900;
+}
+
+.welcome h1{
+  font-size:clamp(34px,6vw,58px);
+  line-height:1.25;
+  margin:7px 0 10px;
+}
+
+.welcome p{
+  max-width:760px;
+  color:var(--muted);
+  font-size:17px;
+}
+
+/* PROFILE */
+
+.store-profile{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:22px;
+  margin-bottom:22px;
+  border:1px solid var(--border);
+  border-radius:24px;
+  background:var(--card);
+}
+
+.store-info{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.store-avatar{
+  width:68px;
+  height:68px;
+  border-radius:20px;
+  object-fit:cover;
+  background:#102b1b;
+  border:1px solid #327548;
+}
+
+.store-info h2{
+  font-size:20px;
+}
+
+.store-info p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.outline{
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--green);
+  border-radius:12px;
+  padding:10px 15px;
+  font-weight:800;
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:17px;
+  margin-bottom:45px;
+}
+
+.stat{
+  min-height:140px;
+  padding:22px;
+  border-radius:22px;
+  border:1px solid var(--border);
+  background:var(--card);
+}
+
+.stat small{
+  display:block;
+  color:var(--muted);
+  margin-bottom:13px;
+}
+
+.stat strong{
+  display:block;
+  color:var(--green);
+  font-size:30px;
+}
+
+.stat span{
+  color:#738879;
+  font-size:12px;
+}
+
+/* CARDS */
+
+.section-title{
+  font-size:clamp(28px,5vw,43px);
+  margin:35px 0 20px;
+}
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.card{
+  padding:29px;
+  border-radius:25px;
+  border:1px solid var(--border);
+  background:var(--card);
+}
+
+.card-icon{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.card h3{
+  color:var(--green);
+  font-size:23px;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+.card-btn{
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:13px;
+  background:var(--green);
+  color:#06120b;
+  font-weight:950;
+}
+
+/* AMBASSADOR */
+
+.ambassador{
+  position:relative;
+  overflow:hidden;
+  margin-top:22px;
+  padding:30px;
+  border-radius:28px;
+  border:1px solid #317447;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(105,229,124,.15),transparent 32%),
+    linear-gradient(145deg,#10351f,#092015);
+}
+
+.ambassador-content{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1fr 230px;
+  align-items:center;
+  gap:25px;
+}
+
+.badge{
+  display:inline-flex;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(105,229,124,.10);
+  border:1px solid rgba(105,229,124,.25);
+  color:var(--green);
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:12px;
+}
+
+.ambassador h2{
+  font-size:clamp(28px,5vw,44px);
+  line-height:1.25;
+  margin-bottom:10px;
+}
+
+.ambassador p{
+  color:#b8cbbd;
+  max-width:700px;
+}
+
+.ambassador-image{
+  width:100%;
+  max-width:230px;
+  height:230px;
+  object-fit:contain;
+  justify-self:center;
+  filter:drop-shadow(0 18px 35px rgba(0,255,136,.18));
+}
+
+.ambassador-features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:24px;
+}
+
+.feature{
+  padding:15px;
+  border-radius:16px;
+  background:rgba(0,0,0,.16);
+  border:1px solid rgba(105,229,124,.13);
+}
+
+.feature strong{
+  display:block;
+  margin-bottom:3px;
+}
+
+.feature span{
+  color:#91a596;
+  font-size:12px;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:11px;
+  margin-top:23px;
+}
+
+.actions button{
+  border-radius:13px;
+  padding:12px 18px;
+  font-weight:900;
+}
+
+.green-btn{
+  border:0;
+  background:var(--green);
+  color:#06120b;
+}
+
+.dark-btn{
+  border:1px solid #327348;
+  background:transparent;
+  color:var(--green);
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(8px);
+}
+
+.modal.open{
+  display:flex;
+}
+
+.modal-box{
+  width:min(650px,100%);
+  max-height:90vh;
+  overflow:auto;
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:28px;
+  background:#0b2115;
+  box-shadow:var(--shadow);
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:22px;
+}
+
+.close{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--white);
+  font-size:22px;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:20px;
+  bottom:20px;
+  z-index:900;
+  display:none;
+  padding:13px 18px;
+  border-radius:14px;
+  background:#12351f;
+  border:1px solid #3b7c4d;
+  color:var(--white);
+  box-shadow:var(--shadow);
+}
+
+.toast.show{
+  display:block;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
+
+  .ambassador-content{
+    grid-template-columns:1fr;
+  }
+
+  .ambassador-image{
+    order:-1;
+    max-width:190px;
+    height:190px;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .header-inner{
+    min-height:68px;
+  }
+
+  main{
+    padding-top:28px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .registration-box{
+    padding:23px;
+    border-radius:22px;
+  }
+
+  .store-profile{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .stat{
+    padding:17px;
+    min-height:120px;
+  }
+
+  .stat strong{
+    font-size:25px;
+  }
+
+  .ambassador{
+    padding:22px;
+  }
+
+  .ambassador-features{
+    grid-template-columns:1fr;
+  }
+
+  .brand-text{
+    display:none;
+  }
+
+}
+</style>
 </head>
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================= -->
+<header>
+  <div class="header-inner">
 
-  <header>
-    <div class="header-inner">
-
-      <a href="index.html" class="brand">
-        <span class="brand-mark">G</span>
-        <span>GHOLINO</span>
-      </a>
-
-      <a href="index.html" class="back">
-        ← بازگشت به سایت
-      </a>
-
-    </div>
-  </header>
-
-
-  <!-- =========================
-       REGISTRATION
-  ========================= -->
-
-  <section id="registration">
-    <div class="registration-box">
-
-      <div class="registration-logo">G</div>
-
-      <div class="eyebrow">
-        شروع همکاری با GHOLINO
-      </div>
-
-      <h1>
-        اطلاعات فروشگاهت رو ثبت کن
-      </h1>
-
-      <p>
-        برای ساخت پنل اختصاصی فروشگاه، اطلاعات زیر را وارد کن.
-        این اطلاعات روی همین دستگاه ذخیره می‌شود و بعداً می‌توانی آن‌ها را ویرایش کنی.
-      </p>
-
-      <form id="registrationForm">
-
-        <div class="form-grid">
-
-          <div class="field">
-            <label for="storeName">
-              نام فروشگاه *
-            </label>
-
-            <input
-              id="storeName"
-              name="storeName"
-              type="text"
-              placeholder="مثلاً فروشگاه گولینو"
-              required
-            >
-          </div>
-
-
-          <div class="field">
-            <label for="ownerName">
-              نام مدیر فروشگاه *
-            </label>
-
-            <input
-              id="ownerName"
-              name="ownerName"
-              type="text"
-              placeholder="نام و نام خانوادگی"
-              required
-            >
-          </div>
-
-
-          <div class="field">
-            <label for="phone">
-              شماره تماس *
-            </label>
-
-            <input
-              id="phone"
-              name="phone"
-              type="tel"
-              inputmode="tel"
-              placeholder="09123456789"
-              required
-            >
-          </div>
-
-
-          <div class="field">
-            <label for="businessType">
-              نوع کسب‌وکار *
-            </label>
-
-            <select
-              id="businessType"
-              name="businessType"
-              required
-            >
-              <option value="">انتخاب کنید</option>
-              <option value="فروشگاه">فروشگاه</option>
-              <option value="بوتیک">بوتیک</option>
-              <option value="رستوران">رستوران</option>
-              <option value="کافه">کافه</option>
-              <option value="خدماتی">خدماتی</option>
-              <option value="آنلاین">فروشگاه آنلاین</option>
-              <option value="سایر">سایر</option>
-            </select>
-          </div>
-
-
-          <div class="field full">
-            <label for="address">
-              آدرس فروشگاه
-            </label>
-
-            <textarea
-              id="address"
-              name="address"
-              placeholder="آدرس فروشگاه را وارد کنید..."
-            ></textarea>
-          </div>
-
-
-          <div class="field">
-            <label for="workingHours">
-              ساعت کاری
-            </label>
-
-            <input
-              id="workingHours"
-              name="workingHours"
-              type="text"
-              placeholder="مثلاً ۹ تا ۲۲"
-            >
-          </div>
-
-
-          <div class="field">
-            <label for="instagram">
-              اینستاگرام
-            </label>
-
-            <input
-              id="instagram"
-              name="instagram"
-              type="text"
-              placeholder="@yourshop"
-            >
-          </div>
-
-        </div>
-
-
-        <button
-          class="primary-btn"
-          type="submit"
-        >
-          ورود به پنل GHOLINO
-        </button>
-
-        <div class="small-note">
-          اطلاعات شما بدون ارسال به سرور، روی دستگاه ذخیره می‌شود.
-        </div>
-
-      </form>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       DASHBOARD
-  ========================= -->
-
-  <main id="dashboard">
-
-    <section class="welcome">
-
-      <small>
-        پنل مدیریت GHOLINO
-      </small>
-
-      <h1>
-        خوش آمدید 👋
-      </h1>
-
-      <p>
-        اینجا مرکز مدیریت کسب‌وکار شماست.
-        ابزارها، سفارش‌ها، مشتری‌ها و برنامه سفیر برند را یکجا مدیریت کنید.
-      </p>
-
-    </section>
-
-
-    <!-- STORE -->
-
-    <section class="store-profile">
-
-      <div class="store-info">
-
-        <div class="store-avatar">
-          G
-        </div>
-
-        <div>
-          <h2 id="displayStoreName">
-            فروشگاه
-          </h2>
-
-          <p id="displayOwner">
-            مدیر فروشگاه
-          </p>
-        </div>
-
-      </div>
-
-      <button
-        class="outline-btn"
-        onclick="openEditModal()"
+    <a class="brand" href="#">
+      <img
+        class="brand-logo"
+        src="assets/gholino-ambassador.png"
+        alt="سفیر برند GHOLINO"
+        onerror="this.style.display='none'"
       >
-        ویرایش اطلاعات
+
+      <div class="brand-text">
+        <strong>GHOLINO</strong>
+        <span>پنل مدیریت کسب‌وکار</span>
+      </div>
+    </a>
+
+    <a class="back" href="index.html">
+      ← بازگشت به سایت
+    </a>
+
+  </div>
+</header>
+
+<main>
+
+<!-- =========================
+     REGISTRATION
+========================= -->
+
+<section id="registration">
+
+  <div class="registration-box">
+
+    <div class="registration-brand">
+
+      <img
+        src="assets/gholino-ambassador.png"
+        alt="سفیر برند GHOLINO"
+        onerror="this.style.display='none'"
+      >
+
+      <div>
+        <div class="eyebrow">شروع همکاری با GHOLINO</div>
+        <h1>فروشگاهت را ثبت کن</h1>
+      </div>
+
+    </div>
+
+    <p>
+      اطلاعات فروشگاه را وارد کن تا پنل اختصاصی کسب‌وکارت ساخته شود.
+    </p>
+
+    <form id="registrationForm">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>نام فروشگاه</label>
+          <input
+            id="storeName"
+            required
+            placeholder="مثلاً فروشگاه آراد"
+          >
+        </div>
+
+        <div class="field">
+          <label>نام مدیر</label>
+          <input
+            id="managerName"
+            required
+            placeholder="نام و نام خانوادگی"
+          >
+        </div>
+
+        <div class="field">
+          <label>شماره تماس</label>
+          <input
+            id="phone"
+            required
+            type="tel"
+            placeholder="09xxxxxxxxx"
+          >
+        </div>
+
+        <div class="field">
+          <label>نوع فروشگاه</label>
+          <select id="storeType" required>
+            <option value="">انتخاب کنید</option>
+            <option>فروشگاه اینترنتی</option>
+            <option>فروشگاه فیزیکی</option>
+            <option>فروشگاه اینستاگرامی</option>
+            <option>فروشنده چندکاناله</option>
+            <option>سایر</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>آدرس یا لینک فروشگاه</label>
+          <input
+            id="storeUrl"
+            placeholder="https://..."
+          >
+        </div>
+
+        <div class="field full">
+          <label>توضیحات</label>
+          <textarea
+            id="description"
+            placeholder="کمی درباره کسب‌وکارت بنویس..."
+          ></textarea>
+        </div>
+
+      </div>
+
+      <button class="primary" type="submit">
+        ثبت فروشگاه و ورود به پنل
       </button>
 
-    </section>
-
-
-    <!-- STATS -->
-
-    <section class="stats">
-
-      <div class="stat">
-        <small>فروش امروز</small>
-        <strong>۱۲,۵۸۰M</strong>
-        <span>تومان</span>
+      <div class="note">
+        اطلاعات شما فقط برای ساخت پروفایل فروشگاه استفاده می‌شود.
       </div>
 
-      <div class="stat">
-        <small>مشتری‌ها</small>
-        <strong>۱۸۷</strong>
-        <span>مشتری فعال</span>
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section id="dashboard">
+
+  <div class="welcome">
+
+    <small>پنل مدیریت GHOLINO</small>
+
+    <h1>
+      خوش آمدید
+      <span id="welcomeName"></span>
+      👋
+    </h1>
+
+    <p>
+      اینجا مرکز مدیریت کسب‌وکار شماست.
+      ابزارها، سفارش‌ها، مشتریان و اطلاعات مهم را یکجا مدیریت کنید.
+    </p>
+
+  </div>
+
+
+  <!-- STORE -->
+
+  <div class="store-profile">
+
+    <div class="store-info">
+
+      <img
+        class="store-avatar"
+        src="assets/gholino-ambassador.png"
+        alt="سفیر برند GHOLINO"
+        onerror="this.style.display='none'"
+      >
+
+      <div>
+        <h2 id="profileStoreName">فروشگاه شما</h2>
+        <p id="profileManager">مدیریت فروشگاه</p>
       </div>
 
-      <div class="stat">
-        <small>رشد ماهانه</small>
-        <strong>۲۸٪</strong>
-        <span>نسبت به ماه قبل</span>
-      </div>
+    </div>
 
-      <div class="stat">
-        <small>سفارش‌ها</small>
-        <strong>۲۴</strong>
-        <span>سفارش امروز</span>
-      </div>
+    <button class="outline" onclick="openEdit()">
+      ویرایش اطلاعات
+    </button>
 
-    </section>
+  </div>
 
 
-    <!-- TOOLS -->
+  <!-- STATS -->
 
-    <h2 class="section-title">
-      ابزارهای GHOLINO
-    </h2>
+  <div class="stats">
 
-    <section class="dashboard-grid">
+    <div class="stat">
+      <small>فروش امروز</small>
+      <strong>۱۲.۵M</strong>
+      <span>تومان</span>
+    </div>
 
-      <!-- AI -->
+    <div class="stat">
+      <small>مشتری‌ها</small>
+      <strong>۱۸۷</strong>
+      <span>مشتری فعال</span>
+    </div>
 
-      <div class="card">
+    <div class="stat">
+      <small>رشد ماهانه</small>
+      <strong>۲۸٪</strong>
+      <span>نسبت به ماه قبل</span>
+    </div>
 
-        <div class="card-icon">
-          🤖
-        </div>
-
-        <h3>
-          دستیار هوشمند
-        </h3>
-
-        <p>
-          دستیار هوشمند گولینو برای کمک به پاسخ‌گویی به مشتریان
-          و انجام کارهای روزمره آماده است.
-        </p>
-
-        <a
-          href="#assistant"
-          class="card-btn"
-        >
-          شروع گفتگو
-        </a>
-
-      </div>
-
-
-      <!-- ORDERS -->
-
-      <div class="card">
-
-        <div class="card-icon">
-          📦
-        </div>
-
-        <h3>
-          سفارش‌ها
-        </h3>
-
-        <p>
-          سفارش‌های ثبت‌شده را ببینید و وضعیت هر سفارش را مدیریت کنید.
-        </p>
-
-        <a
-          href="#orders"
-          class="card-btn"
-        >
-          مشاهده سفارش‌ها
-        </a>
-
-      </div>
-
-
-      <!-- CUSTOMERS -->
-
-      <div class="card">
-
-        <div class="card-icon">
-          👥
-        </div>
-
-        <h3>
-          مشتری‌ها
-        </h3>
-
-        <p>
-          اطلاعات مشتریان، ارتباطات و وضعیت مشتری‌های فعال را مدیریت کنید.
-        </p>
-
-        <a
-          href="#customers"
-          class="card-btn"
-        >
-          مدیریت مشتری‌ها
-        </a>
-
-      </div>
-
-
-      <!-- ANALYTICS -->
-
-      <div class="card">
-
-        <div class="card-icon">
-          📊
-        </div>
-
-        <h3>
-          گزارش فروش
-        </h3>
-
-        <p>
-          عملکرد فروشگاه و روند رشد کسب‌وکار را بررسی کنید.
-        </p>
-
-        <a
-          href="#reports"
-          class="card-btn"
-        >
-          مشاهده گزارش
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         BRAND AMBASSADOR
-    ========================= -->
-
-    <h2 class="section-title">
-      سفیر برند GHOLINO
-    </h2>
-
-    <section class="ambassador">
-
-      <div class="ambassador-top">
-
-        <div>
-
-          <div class="ambassador-badge">
-            ✦ برنامه رسمی GHOLINO
-          </div>
-
-          <h2>
-            سفیر برند گولینو باش
-          </h2>
-
-          <p>
-            با معرفی GHOLINO به فروشگاه‌ها و کسب‌وکارهای دیگر،
-            بخشی از رشد برند باش و از مزایای برنامه سفیر برند استفاده کن.
-          </p>
-
-        </div>
-
-        <div class="ambassador-icon">
-          G
-        </div>
-
-      </div>
-
-
-      <div class="ambassador-features">
-
-        <div class="ambassador-feature">
-          <strong>🎁 پاداش معرفی</strong>
-          <span>
-            برای معرفی موفق کسب‌وکارهای جدید
-          </span>
-        </div>
-
-        <div class="ambassador-feature">
-          <strong>🔗 لینک اختصاصی</strong>
-          <span>
-            یک لینک معرفی مخصوص خودت داشته باش
-          </span>
-        </div>
-
-        <div class="ambassador-feature">
-          <strong>📈 رشد جایگاه</strong>
-          <span>
-            با معرفی بیشتر، سطح سفیرت ارتقا پیدا می‌کند
-          </span>
-        </div>
-
-      </div>
-
-
-      <div class="ambassador-action">
-
-        <button
-          class="ambassador-primary"
-          onclick="joinAmbassador()"
-        >
-          شروع سفیری
-        </button>
-
-        <button
-          class="ambassador-secondary"
-          onclick="showAmbassadorInfo()"
-        >
-          درباره برنامه سفیر برند
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         EXTRA SECTIONS
-    ========================= -->
-
-    <section id="assistant" style="margin-top:50px;">
-      <div class="card">
-        <h3>🤖 دستیار هوشمند</h3>
-        <p>
-          این قسمت آماده اتصال به سرویس هوش مصنوعی است.
-        </p>
-      </div>
-    </section>
-
-
-    <section id="orders" style="margin-top:22px;">
-      <div class="card">
-        <h3>📦 سفارش‌ها</h3>
-        <p>
-          بخش مدیریت سفارش‌ها آماده توسعه است.
-        </p>
-      </div>
-    </section>
-
-
-    <section id="customers" style="margin-top:22px;">
-      <div class="card">
-        <h3>👥 مشتری‌ها</h3>
-        <p>
-          بخش مدیریت مشتریان آماده توسعه است.
-        </p>
-      </div>
-    </section>
-
-
-    <section id="reports" style="margin-top:22px;">
-      <div class="card">
-        <h3>📊 گزارش فروش</h3>
-        <p>
-          بخش گزارش‌ها آماده اتصال به داده‌های واقعی فروشگاه است.
-        </p>
-      </div>
-    </section>
-
-  </main>
-
-
-  <!-- =========================
-       EDIT MODAL
-  ========================= -->
-
-  <div
-    id="editModal"
-    class="modal"
-  >
-
-    <div class="modal-box">
-
-      <div class="modal-header">
-
-        <h2>
-          ویرایش اطلاعات فروشگاه
-        </h2>
-
-        <button
-          class="close"
-          onclick="closeEditModal()"
-        >
-          ×
-        </button>
-
-      </div>
-
-
-      <form id="editForm">
-
-        <div class="form-grid">
-
-          <div class="field">
-            <label>نام فروشگاه</label>
-            <input id="editStoreName" required>
-          </div>
-
-          <div class="field">
-            <label>نام مدیر</label>
-            <input id="editOwnerName" required>
-          </div>
-
-          <div class="field">
-            <label>شماره تماس</label>
-            <input id="editPhone" required>
-          </div>
-
-          <div class="field">
-            <label>نوع کسب‌وکار</label>
-
-            <select id="editBusinessType">
-              <option value="فروشگاه">فروشگاه</option>
-              <option value="بوتیک">بوتیک</option>
-              <option value="رستوران">رستوران</option>
-              <option value="کافه">کافه</option>
-              <option value="خدماتی">خدماتی</option>
-              <option value="آنلاین">فروشگاه آنلاین</option>
-              <option value="سایر">سایر</option>
-            </select>
-          </div>
-
-          <div class="field full">
-            <label>آدرس</label>
-            <textarea id="editAddress"></textarea>
-          </div>
-
-          <div class="field">
-            <label>ساعت کاری</label>
-            <input id="editWorkingHours">
-          </div>
-
-          <div class="field">
-            <label>اینستاگرام</label>
-            <input id="editInstagram">
-          </div>
-
-        </div>
-
-        <button
-          class="primary-btn"
-          type="submit"
-        >
-          ذخیره تغییرات
-        </button>
-
-      </form>
-
+    <div class="stat">
+      <small>سفارش‌ها</small>
+      <strong>۴۶</strong>
+      <span>سفارش فعال</span>
     </div>
 
   </div>
 
 
-  <script>
+  <h2 class="section-title">
+    ابزارهای GHOLINO
+  </h2>
+
+
+  <div class="dashboard-grid">
+
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <h3>دستیار هوشمند</h3>
+      <p>
+        دستیار هوشمند GHOLINO برای پاسخ‌گویی به مشتریان و انجام کارهای روزمره آماده است.
+      </p>
+      <button class="card-btn" onclick="toast('دستیار هوشمند به‌زودی فعال می‌شود')">
+        شروع گفتگو
+      </button>
+    </div>
+
+
+    <div class="card">
+      <div class="card-icon">📦</div>
+      <h3>سفارش‌ها</h3>
+      <p>
+        سفارش‌های ثبت‌شده را ببینید و وضعیت هر سفارش را مدیریت کنید.
+      </p>
+      <button class="card-btn" onclick="toast('بخش سفارش‌ها آماده اتصال است')">
+        مشاهده سفارش‌ها
+      </button>
+    </div>
+
+
+    <div class="card">
+      <div class="card-icon">👥</div>
+      <h3>مشتری‌ها</h3>
+      <p>
+        اطلاعات مشتریان و ارتباطات کسب‌وکار خود را مدیریت کنید.
+      </p>
+      <button class="card-btn" onclick="toast('بخش مشتریان آماده اتصال است')">
+        مدیریت مشتری‌ها
+      </button>
+    </div>
+
+
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <h3>گزارش و تحلیل</h3>
+      <p>
+        فروش، رشد، سفارش‌ها و عملکرد کانال‌های فروش را بررسی کنید.
+      </p>
+      <button class="card-btn" onclick="toast('گزارش‌ها به‌زودی فعال می‌شوند')">
+        مشاهده گزارش
+      </button>
+    </div>
 
-    /* =========================
-       STORAGE
-    ========================= */
+  </div>
 
-    const STORAGE_KEY = "gholino_store";
 
+  <!-- BRAND AMBASSADOR -->
 
-    function getStore() {
-      const data = localStorage.getItem(STORAGE_KEY);
+  <div class="ambassador">
 
-      if (!data) {
-        return null;
-      }
+    <div class="ambassador-content">
+
+      <div>
 
-      try {
-        return JSON.parse(data);
-      } catch (error) {
-        return null;
-      }
-    }
+        <div class="badge">
+          ✦ سفیر رسمی برند GHOLINO
+        </div>
 
+        <h2>
+          سفیر GHOLINO کنار کسب‌وکار شماست
+        </h2>
 
-    function saveStore(data) {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(data)
-      );
-    }
+        <p>
+          از اینجا به بعد، GHOLINO فقط یک پنل نیست.
+          سفیر برند در تجربه کاربری، ارتباط با مشتری و مدیریت فروشگاه
+          حضور دارد تا همه‌چیز ساده‌تر، سریع‌تر و هوشمندتر پیش برود.
+        </p>
 
+        <div class="ambassador-features">
 
-    /* =========================
-       INITIALIZATION
-    ========================= */
+          <div class="feature">
+            <strong>🤝 همراه</strong>
+            <span>همیشه کنار کسب‌وکار شما</span>
+          </div>
 
-    function init() {
+          <div class="feature">
+            <strong>⚡ سریع</strong>
+            <span>مدیریت ساده و سریع</span>
+          </div>
 
-      const store = getStore();
+          <div class="feature">
+            <strong>🧠 هوشمند</strong>
+            <span>کمک به تصمیم‌گیری بهتر</span>
+          </div>
 
-      if (!store) {
+        </div>
 
-        document.getElementById("registration").style.display =
-          "flex";
+        <div class="actions">
 
-        document.getElementById("dashboard").style.display =
-          "none";
+          <button
+            class="green-btn"
+            onclick="toast('سفیر GHOLINO آماده همکاری است 🤝')"
+          >
+            شروع همکاری
+          </button>
 
-        return;
-      }
+          <button
+            class="dark-btn"
+            onclick="openAmbassador()"
+          >
+            درباره سفیر برند
+          </button>
 
+        </div>
 
-      document.getElementById("registration").style.display =
-        "none";
+      </div>
 
-      document.getElementById("dashboard").style.display =
-        "block";
 
+      <img
+        class="ambassador-image"
+        src="assets/gholino-ambassador.png"
+        alt="سفیر برند GHOLINO"
+        onerror="
+          this.src='data:image/svg+xml;charset=UTF-8,'+
+          encodeURIComponent(
+            '<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;400&quot; height=&quot;400&quot; viewBox=&quot;0 0 400 400&quot;>'+
+            '<rect width=&quot;400&quot; height=&quot;400&quot; rx=&quot;80&quot; fill=&quot;#102b1b&quot;/>'+
+            '<circle cx=&quot;200&quot; cy=&quot;175&quot; r=&quot;95&quot; fill=&quot;#69e57c&quot;/>'+
+            '<circle cx=&quot;165&quot; cy=&quot;165&quot; r=&quot;15&quot; fill=&quot;#06110c&quot;/>'+
+            '<circle cx=&quot;235&quot; cy=&quot;165&quot; r=&quot;15&quot; fill=&quot;#06110c&quot;/>'+
+            '<path d=&quot;M145 210 Q200 255 255 210&quot; fill=&quot;none&quot; stroke=&quot;#06110c&quot; stroke-width=&quot;12&quot; stroke-linecap=&quot;round&quot;/>'+
+            '<text x=&quot;200&quot; y=&quot;330&quot; text-anchor=&quot;middle&quot; fill=&quot;#69e57c&quot; font-size=&quot;35&quot; font-family=&quot;Arial&quot; font-weight=&quot;bold&quot;>GHOLINO</text>'+
+            '</svg>'
+          )
+        "
+      >
 
-      renderStore(store);
-    }
+    </div>
 
+  </div>
 
-    /* =========================
-       RENDER STORE
-    ========================= */
+</section>
 
-    function renderStore(store) {
+</main>
 
-      document.getElementById("displayStoreName")
-        .textContent =
-        store.storeName || "فروشگاه";
 
+<!-- EDIT MODAL -->
 
-      document.getElementById("displayOwner")
-        .textContent =
-        `${store.ownerName || "مدیر"} • ${store.businessType || "کسب‌وکار"}`;
-    }
+<div class="modal" id="editModal">
 
+  <div class="modal-box">
 
-    /* =========================
-       REGISTRATION
-    ========================= */
+    <div class="modal-head">
+      <h2>ویرایش اطلاعات فروشگاه</h2>
+      <button class="close" onclick="closeEdit()">×</button>
+    </div>
 
-    document
-      .getElementById("registrationForm")
-      .addEventListener("submit", function(event) {
+    <div class="field">
+      <label>نام فروشگاه</label>
+      <input id="editStoreName">
+    </div>
 
-        event.preventDefault();
+    <br>
 
+    <div class="field">
+      <label>نام مدیر</label>
+      <input id="editManagerName">
+    </div>
 
-        const store = {
+    <br>
 
-          storeName:
-            document.getElementById("storeName").value.trim(),
+    <div class="field">
+      <label>شماره تماس</label>
+      <input id="editPhone">
+    </div>
 
-          ownerName:
-            document.getElementById("ownerName").value.trim(),
+    <br>
 
-          phone:
-            document.getElementById("phone").value.trim(),
+    <button class="primary" onclick="saveEdit()">
+      ذخیره تغییرات
+    </button>
 
-          businessType:
-            document.getElementById("businessType").value,
+  </div>
 
-          address:
-            document.getElementById("address").value.trim(),
+</div>
 
-          workingHours:
-            document.getElementById("workingHours").value.trim(),
 
-          instagram:
-            document.getElementById("instagram").value.trim(),
+<!-- AMBASSADOR MODAL -->
 
-          registeredAt:
-            new Date().toISOString(),
+<div class="modal" id="ambassadorModal">
 
-          ambassador:
-            {
-              joined: false,
-              referrals: 0
-            }
+  <div class="modal-box">
 
-        };
+    <div class="modal-head">
+      <h2>سفیر برند GHOLINO</h2>
+      <button class="close" onclick="closeAmbassador()">×</button>
+    </div>
 
+    <p style="color:var(--muted)">
+      سفیر برند GHOLINO نماینده شخصیت و تجربه برند است؛
+      شخصیتی دوستانه، مدرن و هوشمند که در بخش‌های مختلف
+      سایت و پنل همراه فروشنده و مشتری خواهد بود.
+    </p>
 
-        saveStore(store);
+    <br>
 
-        init();
+    <img
+      src="assets/gholino-ambassador.png"
+      alt="سفیر برند GHOLINO"
+      style="
+        display:block;
+        width:min(280px,100%);
+        margin:20px auto;
+        max-height:330px;
+        object-fit:contain;
+      "
+    >
 
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
+    <button
+      class="primary"
+      onclick="closeAmbassador()"
+    >
+      متوجه شدم
+    </button>
 
-      });
+  </div>
 
+</div>
 
-    /* =========================
-       EDIT
-    ========================= */
 
-    function openEditModal() {
+<div class="toast" id="toast"></div>
 
-      const store = getStore();
 
-      if (!store) {
-        return;
-      }
+<script>
 
+/* =========================
+   STORAGE
+========================= */
 
-      document.getElementById("editStoreName").value =
-        store.storeName || "";
+const STORAGE_KEY = "gholino_store";
 
-      document.getElementById("editOwnerName").value =
-        store.ownerName || "";
+function getStore(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE_KEY));
+  }catch(e){
+    return null;
+  }
+}
 
-      document.getElementById("editPhone").value =
-        store.phone || "";
+function saveStore(data){
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
+}
 
-      document.getElementById("editBusinessType").value =
-        store.businessType || "فروشگاه";
 
-      document.getElementById("editAddress").value =
-        store.address || "";
+/* =========================
+   ELEMENTS
+========================= */
 
-      document.getElementById("editWorkingHours").value =
-        store.workingHours || "";
+const registration =
+  document.getElementById("registration");
 
-      document.getElementById("editInstagram").value =
-        store.instagram || "";
+const dashboard =
+  document.getElementById("dashboard");
 
+const form =
+  document.getElementById("registrationForm");
 
-      document.getElementById("editModal")
-        .classList.add("open");
-    }
 
+/* =========================
+   SHOW PAGE
+========================= */
 
-    function closeEditModal() {
+function showRegistration(){
 
-      document.getElementById("editModal")
-        .classList.remove("open");
-    }
+  registration.style.display = "flex";
+  dashboard.style.display = "none";
 
+}
 
-    document
-      .getElementById("editForm")
-      .addEventListener("submit", function(event) {
+function showDashboard(){
 
-        event.preventDefault();
+  registration.style.display = "none";
+  dashboard.style.display = "block";
 
-        const store = getStore();
+  loadStore();
 
-        if (!store) {
-          return;
-        }
+}
 
 
-        store.storeName =
-          document.getElementById("editStoreName").value.trim();
+/* =========================
+   LOAD STORE
+========================= */
 
-        store.ownerName =
-          document.getElementById("editOwnerName").value.trim();
+function loadStore(){
 
-        store.phone =
-          document.getElementById("editPhone").value.trim();
+  const store = getStore();
 
-        store.businessType =
-          document.getElementById("editBusinessType").value;
+  if(!store){
+    showRegistration();
+    return;
+  }
 
-        store.address =
-          document.getElementById("editAddress").value.trim();
+  document.getElementById("welcomeName").textContent =
+    store.managerName
+      ? " " + store.managerName
+      : "";
 
-        store.workingHours =
-          document.getElementById("editWorkingHours").value.trim();
+  document.getElementById("profileStoreName").textContent =
+    store.storeName || "فروشگاه شما";
 
-        store.instagram =
-          document.getElementById("editInstagram").value.trim();
+  document.getElementById("profileManager").textContent =
+    store.managerName
+      ? "مدیریت توسط " + store.managerName
+      : "مدیریت فروشگاه";
 
+}
 
-        saveStore(store);
 
-        renderStore(store);
+/* =========================
+   REGISTER
+========================= */
 
-        closeEditModal();
+form.addEventListener("submit",function(e){
 
-      });
+  e.preventDefault();
 
+  const store = {
 
-    /* =========================
-       AMBASSADOR
-    ========================= */
+    storeName:
+      document.getElementById("storeName").value.trim(),
 
-    function joinAmbassador() {
+    managerName:
+      document.getElementById("managerName").value.trim(),
 
-      const store = getStore();
+    phone:
+      document.getElementById("phone").value.trim(),
 
-      if (!store) {
-        return;
-      }
+    storeType:
+      document.getElementById("storeType").value,
 
+    storeUrl:
+      document.getElementById("storeUrl").value.trim(),
 
-      if (!store.ambassador) {
+    description:
+      document.getElementById("description").value.trim(),
 
-        store.ambassador = {
-          joined: false,
-          referrals: 0
-        };
+    createdAt:
+      new Date().toISOString()
 
-      }
+  };
 
+  if(
+    !store.storeName ||
+    !store.managerName ||
+    !store.phone ||
+    !store.storeType
+  ){
 
-      store.ambassador.joined = true;
+    toast("لطفاً اطلاعات ضروری را کامل کنید");
 
-      saveStore(store);
+    return;
+  }
 
+  saveStore(store);
 
-      alert(
-        "🎉 تبریک!\n\nشما به برنامه سفیر برند GHOLINO پیوستید."
-      );
+  toast("فروشگاه با موفقیت ثبت شد ✓");
 
-    }
+  setTimeout(function(){
 
+    showDashboard();
 
-    function showAmbassadorInfo() {
+  },500);
 
-      alert(
-        "سفیر برند GHOLINO\n\n" +
-        "با معرفی GHOLINO به کسب‌وکارهای دیگر، " +
-        "می‌توانید در برنامه سفیر برند فعالیت کنید.\n\n" +
-        "در نسخه بعدی می‌توانیم لینک اختصاصی، " +
-        "تعداد معرفی‌ها، سطح سفیر و پاداش‌ها را به سیستم واقعی متصل کنیم."
-      );
+});
 
-    }
 
+/* =========================
+   EDIT
+========================= */
 
-    /* =========================
-       CLOSE MODAL OUTSIDE
-    ========================= */
+function openEdit(){
 
-    document
-      .getElementById("editModal")
-      .addEventListener("click", function(event) {
+  const store = getStore();
 
-        if (event.target === this) {
-          closeEditModal();
-        }
+  if(!store){
+    showRegistration();
+    return;
+  }
 
-      });
+  document.getElementById("editStoreName").value =
+    store.storeName || "";
 
+  document.getElementById("editManagerName").value =
+    store.managerName || "";
 
-    /* =========================
-       START
-    ========================= */
+  document.getElementById("editPhone").value =
+    store.phone || "";
 
-    init();
+  document
+    .getElementById("editModal")
+    .classList.add("open");
 
-  </script>
+}
+
+function closeEdit(){
+
+  document
+    .getElementById("editModal")
+    .classList.remove("open");
+
+}
+
+function saveEdit(){
+
+  const store = getStore() || {};
+
+  store.storeName =
+    document.getElementById("editStoreName").value.trim();
+
+  store.managerName =
+    document.getElementById("editManagerName").value.trim();
+
+  store.phone =
+    document.getElementById("editPhone").value.trim();
+
+  saveStore(store);
+
+  closeEdit();
+
+  loadStore();
+
+  toast("اطلاعات ذخیره شد ✓");
+
+}
+
+
+/* =========================
+   AMBASSADOR
+========================= */
+
+function openAmbassador(){
+
+  document
+    .getElementById("ambassadorModal")
+    .classList.add("open");
+
+}
+
+function closeAmbassador(){
+
+  document
+    .getElementById("ambassadorModal")
+    .classList.remove("open");
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function toast(message){
+
+  const el =
+    document.getElementById("toast");
+
+  el.textContent = message;
+
+  el.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(function(){
+
+    el.classList.remove("show");
+
+  },2800);
+
+}
+
+
+/* =========================
+   CLOSE MODALS
+========================= */
+
+document.addEventListener("click",function(e){
+
+  if(e.target.classList.contains("modal")){
+
+    e.target.classList.remove("open");
+
+  }
+
+});
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+(function(){
+
+  const store = getStore();
+
+  if(store){
+
+    showDashboard();
+
+  }else{
+
+    showRegistration();
+
+  }
+
+})();
+
+</script>
 
 </body>
 </html>
