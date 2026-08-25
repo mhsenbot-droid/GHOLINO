@@ -525,7 +525,76 @@ document.addEventListener(
         addOrder
       );
     }
+const STORE_KEY = "gholinoStore";
 
+
+function saveStore(event) {
+
+  event.preventDefault();
+
+  const storeName =
+    document.getElementById("storeName")?.value.trim();
+
+  const ownerName =
+    document.getElementById("ownerName")?.value.trim();
+
+  const phone =
+    document.getElementById("phone")?.value.trim();
+
+  const storeType =
+    document.getElementById("storeType")?.value;
+
+  const storeAddress =
+    document.getElementById("storeAddress")?.value.trim();
+
+
+  if (!storeName) {
+    showMessage("نام فروشگاه را وارد کنید.");
+    return;
+  }
+
+  if (!ownerName) {
+    showMessage("نام مدیر فروشگاه را وارد کنید.");
+    return;
+  }
+
+  if (!phone) {
+    showMessage("شماره تماس را وارد کنید.");
+    return;
+  }
+
+  if (!storeType) {
+    showMessage("نوع کسب‌وکار را انتخاب کنید.");
+    return;
+  }
+
+
+  const store = {
+    id: Date.now(),
+    storeName,
+    ownerName,
+    phone,
+    storeType,
+    storeAddress,
+    createdAt: new Date().toISOString()
+  };
+
+
+  localStorage.setItem(
+    STORE_KEY,
+    JSON.stringify(store)
+  );
+
+
+  showMessage(
+    "اطلاعات فروشگاه با موفقیت ثبت شد. ✓"
+  );
+
+
+  setTimeout(() => {
+    window.location.href = "dashboard.html";
+  }, 1000);
+}
 
     renderOrders();
     renderDashboardOrders();
