@@ -220,3 +220,66 @@ footer {
     padding: 50px 7%;
   }
 }
+/* FINAL MOBILE FIX */
+
+header a,
+.header-btn,
+.main-btn {
+  color: #03130b !important;
+  text-decoration: none !important;
+  background: #35e875 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  font-weight: 800;
+}
+
+.hero {
+  overflow: hidden;
+}
+
+.hero-logo {
+  display: grid !important;
+  place-items: center !important;
+  color: #03130b !important;
+  background: linear-gradient(145deg, #35e875, #0b8f42) !important;
+  border-radius: 50% !important;
+  font-size: 150px !important;
+  font-weight: 900 !important;
+}
+
+@media (max-width: 700px) {
+  header {
+    min-height: 100px;
+  }
+
+  header .header-btn {
+    padding: 11px 20px !important;
+  }
+
+  .hero {
+    padding-top: 80px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero > div:first-child {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+  }
+
+  .hero p {
+    font-size: 17px;
+  }
+
+  .hero-logo {
+    width: 220px !important;
+    height: 220px !important;
+    font-size: 110px !important;
+    margin-top: 20px;
+  }
+}
