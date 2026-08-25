@@ -3,100 +3,198 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>GHOLINO | غولینو</title>
+
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .features {
+      padding: 70px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .features-title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .features-title small {
+      color: #39e875;
+      font-size: 18px;
+    }
+
+    .features-title h2 {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      padding: 25px;
+      border-radius: 20px;
+      background: rgba(20, 80, 45, 0.35);
+      border: 1px solid rgba(57, 232, 117, 0.25);
+      text-align: center;
+    }
+
+    .feature-card h3 {
+      color: #39e875;
+      font-size: 22px;
+    }
+
+    .feature-card p {
+      line-height: 2;
+    }
+
+    .feature-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 22px;
+      border-radius: 12px;
+      background: #39e875;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="brand">
-    <span>G</span>
-    GHOLINO
-  </div>
-
-  <a href="#start" class="header-btn">شروع کنید</a>
-</header>
-
-<main>
-
-  <section class="hero" id="start">
-    <div>
-      <small>محصولی از GHOL BAZAR</small>
-
-      <h1>
-        غولینو؛ دستیار<br>
-        هوشمند کسب‌وکار شما
-      </h1>
-
-      <p>
-        یک تجربه مدرن، ساده و سریع برای مدیریت و رشد کسب‌وکار.
-      </p>
-
-      <a href="#features" class="main-btn">
-        شروع کنیم
-      </a>
+  <header>
+    <div class="brand">
+      <span>G</span>
+      GHOLINO
     </div>
 
-    <div class="hero-logo">
-      G
-    </div>
-  </section>
-
-  <section id="features">
-    <small>امکانات</small>
-
-    <h2>همه‌چیز برای رشد شما</h2>
-
-    <div class="cards">
-
-      <div class="card">
-        <h3>🤖 دستیار هوشمند</h3>
-        <p>
-          کمک به مدیریت و انجام کارهای روزمره کسب‌وکار.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>📊 مدیریت آسان</h3>
-        <p>
-          اطلاعات و ابزارهای موردنیاز شما در یک محیط ساده.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🚀 رشد سریع‌تر</h3>
-        <p>
-          ابزارهایی برای بهتر شدن و توسعه کسب‌وکار شما.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="about">
-    <small>GHOL BAZAR</small>
-
-    <h2>غولینو آماده شروع است.</h2>
-
-    <p>
-      این فقط شروع پروژه است. در مراحل بعدی قابلیت‌های
-      هوش مصنوعی، پنل مدیریت و اتصال به سرویس‌های واقعی
-      را اضافه می‌کنیم.
-    </p>
-
-    <a href="#start" class="main-btn">
-      شروع استفاده
+    <a href="#features" class="header-btn">
+      شروع کنید
     </a>
-  </section>
+  </header>
 
-</main>
+  <main>
 
-<footer>
-  © 2026 GHOLINO — A GHOL BAZAR project
-</footer>
+    <section class="hero" id="start">
+      <div>
 
-<script src="app.js"></script>
+        <small>
+          محصولی از GHOL BAZAR
+        </small>
+
+        <h1>
+          غولینو؛ دستیار<br>
+          هوشمند کسب‌وکار شما.
+        </h1>
+
+        <p>
+          یک تجربه مدرن، ساده و سریع برای مدیریت
+          و رشد کسب‌وکار؛ با زیرساخت آماده برای
+          اتصال ربات و سرویس‌های هوشمند.
+        </p>
+
+        <a href="#features" class="feature-btn">
+          شروع کنیم
+        </a>
+
+      </div>
+    </section>
+
+
+    <section id="features" class="features">
+
+      <div class="features-title">
+        <small>امکانات غولینو</small>
+
+        <h2>
+          ابزارهای هوشمند برای کسب‌وکار شما
+        </h2>
+
+        <p>
+          امکانات اصلی غولینو را از اینجا انتخاب کنید.
+        </p>
+      </div>
+
+
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <h3>🤖 دستیار هوشمند</h3>
+
+          <p>
+            دستیار هوشمند برای کمک به مدیریت
+            و پاسخ‌گویی سریع‌تر به مشتریان.
+          </p>
+
+          <a href="#" class="feature-btn">
+            ورود
+          </a>
+        </div>
+
+
+        <div class="feature-card">
+          <h3>📊 مدیریت کسب‌وکار</h3>
+
+          <p>
+            ابزارهای ساده برای مدیریت اطلاعات
+            و روند فعالیت کسب‌وکار شما.
+          </p>
+
+          <a href="#" class="feature-btn">
+            مشاهده
+          </a>
+        </div>
+
+
+        <div class="feature-card">
+          <h3>💬 اتصال ربات</h3>
+
+          <p>
+            آماده برای اتصال ربات‌ها و سرویس‌های
+            هوشمند به سیستم شما.
+          </p>
+
+          <a href="#" class="feature-btn">
+            شروع
+          </a>
+        </div>
+
+
+        <div class="feature-card">
+          <h3>🚀 رشد کسب‌وکار</h3>
+
+          <p>
+            ابزارهایی برای ساخت یک تجربه مدرن
+            و کمک به توسعه کسب‌وکار.
+          </p>
+
+          <a href="#" class="feature-btn">
+            بیشتر
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    © 2026 GHOLINO — A GHOL BAZAR project
+  </footer>
+
+  <script src="app.js"></script>
 
 </body>
 </html>
