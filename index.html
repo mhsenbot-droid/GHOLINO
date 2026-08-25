@@ -1,6 +1,93 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
+  
+
+<style>
+/* Mobile responsive - GHOLINO Orders */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.orders-section {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 16px;
+}
+
+.orders-section h2 {
+    text-align: center;
+    font-size: clamp(28px, 8vw, 52px);
+    margin-bottom: 30px;
+}
+
+.order-form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.order-form input {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.order-form button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+}
+
+#ordersList {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.order-card {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 18px;
+    border-radius: 16px;
+    background: #10291a;
+    border: 1px solid #28683b;
+    direction: rtl;
+    text-align: right;
+}
+
+@media (max-width: 600px) {
+    .orders-section {
+        padding: 20px 12px;
+    }
+
+    .order-form {
+        grid-template-columns: 1fr;
+    }
+
+    .orders-section h2 {
+        font-size: 34px;
+        line-height: 1.4;
+    }
+
+    .order-form input,
+    .order-form button {
+        width: 100%;
+    }
+}
+</style>
+
+    <meta charset="UTF-8">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
